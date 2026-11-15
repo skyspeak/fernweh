@@ -1,0 +1,1029 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fernweh — Trips You'll Never Take</title>
+<meta name="description" content="All the thrill of planning a trip. None of the packing, paying, or going.">
+<meta name="theme-color" content="#ff5a5f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff8f1; --card:#ffffff; --ink:#1d1630; --muted:#6f6880; --line:#efe5dc;
+  --hot:#ff5a5f; --sun:#ffb238; --sea:#1fb5a8; --sky:#5b7cfa; --grape:#8b5cf6; --good:#16a34a;
+  --g1:#ff5f6d; --g2:#ffc371;
+  --r:20px; --shadow:0 10px 30px -12px rgba(40,20,60,.25);
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#120e1c; --card:#1d1730; --ink:#f6f1ff; --muted:#a39bb8; --line:#2d2544; --shadow:0 10px 30px -12px rgba(0,0,0,.6)}
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:"Bricolage Grotesque",system-ui,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+input{font:inherit;color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+
+/* header */
+header{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.hbar{display:flex;align-items:center;gap:10px;height:60px}
+.logo{font-weight:800;font-size:22px;letter-spacing:-.5px;display:flex;align-items:center;gap:6px}
+.logo span{background:linear-gradient(90deg,var(--hot),var(--sun));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hstats{margin-left:auto;display:flex;gap:6px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:14px;font-weight:600;white-space:nowrap}
+.pill.btn:active{transform:scale(.95)}
+.iconbtn{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--card);border:1px solid var(--line)}
+@media (max-width:520px){.hide-sm{display:none}}
+
+.screen{display:none;animation:fadeUp .45s ease both}
+.screen.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* HOME */
+.hero{padding:44px 0 24px;text-align:center}
+.eyebrow{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--hot);background:color-mix(in srgb,var(--hot) 12%,transparent);padding:6px 12px;border-radius:999px}
+h1{font-size:clamp(38px,8vw,76px);line-height:.98;letter-spacing:-2px;font-weight:800;margin:16px auto 14px;max-width:900px}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--hot),var(--sun),var(--sea));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);font-size:clamp(16px,2.4vw,20px);max-width:560px;margin:0 auto}
+
+.planner{background:var(--card);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);padding:20px;max-width:760px;margin:28px auto 0;text-align:left}
+.where{display:flex;gap:10px;align-items:stretch}
+.where .field{flex:1;position:relative}
+.where input{width:100%;height:60px;border-radius:16px;border:2px solid var(--line);background:var(--bg);padding:0 16px 0 46px;font-size:20px;font-weight:600;outline:none;transition:border-color .2s}
+.where input:focus{border-color:var(--hot)}
+.where .pin{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:22px}
+.spin{height:60px;padding:0 18px;border-radius:16px;background:linear-gradient(135deg,var(--grape),var(--sky));color:#fff;font-weight:700;font-size:16px;white-space:nowrap;box-shadow:0 6px 18px -6px var(--grape)}
+.spin:active{transform:scale(.96)}
+.spinning input{animation:jit .08s infinite}
+@keyframes jit{50%{transform:translateY(-1px)}}
+.sugg{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.sugg button{font-size:14px;padding:6px 10px;border-radius:999px;background:var(--bg);border:1px solid var(--line)}
+.sugg button:hover{border-color:var(--hot)}
+.lbl{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:10px 14px;border-radius:999px;border:2px solid var(--line);font-weight:600;font-size:15px;transition:all .15s;background:var(--card)}
+.chip.on{border-color:var(--hot);background:color-mix(in srgb,var(--hot) 12%,var(--card));transform:scale(1.04)}
+.row2{display:grid;grid-template-columns:1fr 1.6fr;gap:16px}
+@media (max-width:600px){.row2{grid-template-columns:1fr}.where{flex-direction:column}.spin{height:52px}}
+.stepper{display:flex;align-items:center;gap:6px;background:var(--bg);border:2px solid var(--line);border-radius:16px;padding:6px;width:max-content}
+.stepper button{width:40px;height:40px;border-radius:12px;background:var(--card);font-size:22px;font-weight:700}
+.stepper b{min-width:76px;text-align:center;font-size:18px}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tier{border:2px solid var(--line);border-radius:16px;padding:10px 6px;text-align:center;font-weight:600;font-size:14px;line-height:1.2;background:var(--card)}
+.tier i{display:block;font-style:normal;font-size:24px;margin-bottom:4px}
+.tier.on{border-color:var(--sun);background:color-mix(in srgb,var(--sun) 16%,var(--card))}
+.cta{width:100%;margin-top:22px;height:64px;border-radius:18px;font-size:20px;font-weight:800;color:#fff;background:linear-gradient(90deg,var(--hot),#ff8a3d);box-shadow:0 12px 26px -10px var(--hot);position:relative;overflow:hidden;transition:transform .1s}
+.cta:active{transform:scale(.98)}
+.cta::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-100%);animation:shine 2.8s infinite}
+@keyframes shine{60%,100%{transform:translateX(100%)}}
+.fine{font-size:13px;color:var(--muted);text-align:center;margin-top:10px}
+
+.ticker{margin:36px 0 50px;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.ticker div{display:flex;gap:10px;width:max-content;animation:scroll 60s linear infinite}
+.ticker span{white-space:nowrap;font-size:14px;padding:8px 12px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* PLAN */
+.banner{margin-top:18px;border-radius:28px;padding:26px 22px;color:#fff;background:linear-gradient(135deg,var(--g1),var(--g2));position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.banner .big{position:absolute;right:-10px;bottom:-30px;font-size:160px;opacity:.35;transform:rotate(-12deg)}
+.banner small{font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.9;font-size:13px}
+.banner h2{font-size:clamp(32px,6vw,54px);line-height:1;letter-spacing:-1px;margin:8px 0}
+.banner .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.banner .meta span{background:rgba(255,255,255,.22);padding:6px 10px;border-radius:999px;font-size:14px;font-weight:600}
+.back{font-weight:600;color:var(--muted);margin-top:16px;display:inline-flex;gap:6px}
+
+.hype{display:flex;align-items:center;gap:10px;margin:16px 0 4px}
+.hype b{font-size:13px;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.bar{flex:1;height:12px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--sun),var(--hot),var(--grape));transition:width .5s cubic-bezier(.2,1.4,.4,1)}
+.hype .pct{font-weight:800;min-width:44px;text-align:right}
+
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:20px;margin:16px 0 60px;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}}
+.aside{position:sticky;top:76px;display:flex;flex-direction:column;gap:14px}
+@media (max-width:900px){.aside{position:static}}
+
+.think{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.think h3{font-size:18px;display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--hot);animation:pulse 1s infinite}
+@keyframes pulse{50%{transform:scale(1.6);opacity:.4}}
+.step{display:flex;gap:10px;align-items:center;padding:6px 0;color:var(--muted);font-size:15px;animation:fadeUp .3s both}
+.step.done{color:var(--ink)}
+.step .ck{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;background:var(--line);flex:none}
+.step.done .ck{background:var(--good);color:#fff}
+
+.day{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-bottom:14px;animation:fadeUp .5s both}
+.dayh{display:flex;align-items:baseline;gap:10px;margin-bottom:8px}
+.dayh .n{font-size:13px;font-weight:800;color:#fff;background:var(--ink);padding:4px 9px;border-radius:8px}
+.dayh h3{font-size:20px;letter-spacing:-.3px}
+.item{display:grid;grid-template-columns:54px 1fr auto;gap:10px;align-items:start;padding:12px 0;border-top:1px dashed var(--line)}
+.item:first-of-type{border-top:0}
+.item .t{font-weight:700;color:var(--muted);font-size:14px;padding-top:2px}
+.item .txt{font-size:16px;line-height:1.35}
+.item .txt .k{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:block;margin-bottom:2px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:color-mix(in srgb,var(--sun) 25%,transparent);margin-left:4px;vertical-align:2px}
+.item .acts{display:flex;gap:4px}
+.mini{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);font-size:16px;transition:transform .15s}
+.mini:active{transform:scale(.85)}
+.mini.liked{background:color-mix(in srgb,var(--hot) 18%,var(--card));border-color:var(--hot);animation:pop .35s}
+@keyframes pop{40%{transform:scale(1.35)}}
+.item.swap .txt{animation:slot .45s}
+@keyframes slot{0%{opacity:0;transform:translateY(-12px);filter:blur(4px)}100%{opacity:1;transform:none;filter:none}}
+.cost{font-size:13px;color:var(--muted);margin-top:4px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.card .hd{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:10px}
+.route{display:flex;align-items:center;gap:10px;font-size:26px;font-weight:800}
+.route .line{flex:1;height:2px;background:repeating-linear-gradient(90deg,var(--muted) 0 6px,transparent 6px 12px);position:relative}
+.route .line::after{content:"✈️";position:absolute;left:0;top:-14px;font-size:18px;animation:fly 3s ease-in-out infinite}
+@keyframes fly{to{left:calc(100% - 20px)}}
+.price{display:flex;align-items:baseline;gap:8px;margin-top:10px}
+.price b{font-size:30px;letter-spacing:-.5px;transition:color .3s}
+.price s{color:var(--muted)}
+.price b.drop{color:var(--good);animation:pop .4s}
+.live{font-size:13px;color:var(--hot);font-weight:600;margin-top:4px}
+.hotel{display:flex;gap:12px;align-items:center}
+.hotel .ph{width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg,var(--g2),var(--g1));display:grid;place-items:center;font-size:30px;flex:none}
+.stars{color:var(--sun);font-size:14px}
+.total{background:var(--ink);color:var(--bg);border:0}
+.total .hd{color:color-mix(in srgb,var(--bg) 60%,transparent)}
+.total .l{display:flex;justify-content:space-between;padding:4px 0;font-size:15px}
+.total .pay{font-size:22px;font-weight:800;border-top:1px solid color-mix(in srgb,var(--bg) 20%,transparent);margin-top:8px;padding-top:10px}
+.total .pay span:last-child{color:#5eead4}
+.go{width:100%;height:58px;border-radius:16px;margin-top:14px;background:linear-gradient(90deg,var(--sea),var(--sky));color:#fff;font-weight:800;font-size:18px}
+.go:disabled{opacity:.5}
+
+/* EXPLORE */
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 0 12px;scrollbar-width:none;position:sticky;top:60px;z-index:5;background:var(--bg)}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;padding:10px 14px;border-radius:999px;border:2px solid var(--line);background:var(--card);font-weight:700;font-size:14px;white-space:nowrap;transition:transform .15s}
+.tab:active{transform:scale(.95)}
+.tab.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tabs.nudge .tab:not(.on){animation:pop .5s}
+.badge{background:var(--hot);color:#fff;border-radius:99px;padding:1px 7px;font-size:12px;margin-left:2px}
+.intro{color:var(--muted);margin:2px 0 12px}
+.xgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:600px){.xgrid{grid-template-columns:minmax(0,1fr)}}
+.xcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;animation:fadeUp .4s both}
+.xph{height:110px;background:linear-gradient(135deg,var(--g1),var(--g2));display:grid;place-items:center;font-size:52px;position:relative}
+.xph em{position:absolute;left:10px;top:10px;font-style:normal;font-size:12px;font-weight:700;background:rgba(255,255,255,.92);color:#1d1630;padding:4px 8px;border-radius:99px}
+.xb{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.xb b{font-size:17px;line-height:1.25}
+.xb p{color:var(--muted);font-size:14px;line-height:1.35}
+.xm{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:13px;color:var(--muted)}
+.xf{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:8px}
+.xp{font-weight:800;font-size:18px}
+.xp small{font-weight:600;font-size:12px;color:var(--good)}
+.xbtn{padding:10px 14px;border-radius:12px;background:var(--hot);color:#fff;font-weight:700;font-size:14px;white-space:nowrap}
+.xbtn:active{transform:scale(.95)}
+.xbtn.gold{background:linear-gradient(90deg,#d4a017,var(--sun));color:#1d1630}
+.xbtn.done{background:color-mix(in srgb,var(--good) 15%,var(--card));color:var(--good);cursor:default}
+.day.flash{box-shadow:0 0 0 3px var(--sun)}
+.modal.sheet{align-items:flex-end;padding:0}
+@media (min-width:700px){.modal.sheet{align-items:center;padding:16px}}
+.modal .sbox{background:var(--bg);border-radius:24px 24px 0 0;overflow:hidden;max-width:520px;max-height:92vh;overflow-y:auto;margin:auto auto 0;animation:sheetUp .35s cubic-bezier(.2,1,.3,1)}
+@media (min-width:700px){.modal .sbox{border-radius:24px;margin:auto}}
+@keyframes sheetUp{from{transform:translateY(80px);opacity:0}}
+.sbox .xph{height:130px;font-size:64px}
+.sclose{position:absolute;right:12px;top:12px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.92);color:#1d1630;font-weight:700;font-size:16px;line-height:1}
+.sbody{padding:18px 18px 24px}
+.sbody h3{font-size:24px;line-height:1.1;letter-spacing:-.5px}
+.sbody .lbl{margin:16px 0 8px}
+.sc{padding:8px 12px;border-radius:12px;border:2px solid var(--line);background:var(--card);font-weight:600;font-size:14px}
+.sc.on{border-color:var(--hot);background:color-mix(in srgb,var(--hot) 12%,var(--card))}
+.guides{display:grid;gap:8px}
+.guide{display:flex;gap:12px;align-items:center;padding:12px;border-radius:16px;border:2px solid var(--line);background:var(--card);text-align:left;width:100%}
+.guide.on{border-color:var(--hot);background:color-mix(in srgb,var(--hot) 8%,var(--card))}
+.guide .av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--g1),var(--g2));display:grid;place-items:center;font-size:24px;flex:none}
+.guide small{display:block;color:var(--muted);font-size:13px}
+.incl{list-style:none;display:grid;gap:4px;font-size:14px;margin-top:10px}
+.ssum{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding:12px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line);font-weight:600}
+.ssum b{color:var(--good);font-size:20px}
+.excl{display:flex;gap:10px;align-items:center;padding:8px 0;border-top:1px dashed var(--line);font-size:14px;line-height:1.3}
+.excl:first-of-type{border-top:0}
+.excl small{display:block;color:var(--muted);font-size:12px}
+.excpass{background:#fff;color:#1d1630;border-radius:16px;padding:12px 14px;margin-top:12px;font-size:14px}
+.excpass div{padding:3px 0}
+
+/* BOOK */
+.bookgrid{display:grid;grid-template-columns:1fr 360px;gap:20px;margin:18px 0 60px;align-items:start}
+@media (max-width:900px){.bookgrid{grid-template-columns:1fr}}
+.bookgrid h2{font-size:clamp(28px,5vw,40px);letter-spacing:-1px;line-height:1.05}
+.plane{background:var(--card);border:1px solid var(--line);border-radius:60px 60px var(--r) var(--r);padding:30px 16px 20px;margin-top:16px}
+.seats{display:grid;grid-template-columns:repeat(3,1fr) 22px repeat(3,1fr);gap:7px;max-width:340px;margin:0 auto}
+.seat{aspect-ratio:1;border-radius:9px 9px 6px 6px;background:color-mix(in srgb,var(--sea) 22%,var(--card));border:2px solid color-mix(in srgb,var(--sea) 50%,transparent);font-size:11px;font-weight:700;color:var(--muted)}
+.seat.taken,.seat.first.taken{background:var(--line);border-color:transparent;cursor:not-allowed;color:transparent}
+.seat.on{background:var(--hot);border-color:var(--hot);color:#fff;animation:pop .35s}
+.seat.first{background:color-mix(in srgb,var(--sun) 30%,var(--card));border-color:var(--sun)}
+.aisle{display:grid;place-items:center;font-size:10px;color:var(--muted)}
+.legend{display:flex;gap:14px;justify-content:center;font-size:13px;color:var(--muted);margin-top:14px;flex-wrap:wrap}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:4px;vertical-align:-1px;margin-right:4px}
+.extra{display:flex;align-items:center;gap:12px;padding:14px;border:2px solid var(--line);border-radius:16px;margin-top:10px;background:var(--card);text-align:left;width:100%;transition:all .15s}
+.extra .e{font-size:26px}
+.extra div{flex:1}
+.extra small{display:block;color:var(--muted);font-size:13px}
+.extra .sw{width:46px;height:28px;border-radius:99px;background:var(--line);position:relative;transition:background .2s;flex:none}
+.extra .sw::after{content:"";position:absolute;width:22px;height:22px;border-radius:50%;background:#fff;top:3px;left:3px;transition:left .2s;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.extra.on{border-color:var(--sea)}
+.extra.on .sw{background:var(--sea)}
+.extra.on .sw::after{left:21px}
+
+.hold{position:relative;overflow:hidden;width:100%;height:66px;border-radius:18px;margin-top:16px;background:var(--ink);color:var(--bg);font-weight:800;font-size:18px;user-select:none;-webkit-user-select:none;touch-action:none}
+.hold i{position:absolute;inset:0;width:0;background:linear-gradient(90deg,var(--hot),var(--sun));transition:width .1s linear}
+.hold span{position:relative}
+.hold:disabled{opacity:.45;cursor:not-allowed}
+
+/* modal + boarding pass */
+.modal{position:fixed;inset:0;z-index:50;background:rgba(20,10,30,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.modal.show{display:flex;animation:fadeUp .3s}
+.modal .box{width:100%;max-width:440px;margin:auto}
+.yay{text-align:center;color:#fff;margin-bottom:14px}
+.yay h2{font-size:34px;letter-spacing:-1px}
+.yay p{opacity:.9}
+.pass{background:var(--card);border-radius:24px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.5);animation:passIn .8s cubic-bezier(.2,1.3,.4,1) both}
+@keyframes passIn{from{transform:translateY(60px) rotate(-6deg) scale(.9);opacity:0}}
+.pass .top{background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;font-weight:700}
+.pass .codes{display:flex;justify-content:space-between;align-items:center;padding:20px}
+.pass .codes b{font-size:44px;letter-spacing:-1px;line-height:1}
+.pass .codes small{display:block;color:var(--muted);font-size:13px}
+.pass .info{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:0 20px 18px}
+.pass .info small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.pass .info b{font-size:17px}
+.tear{border-top:2px dashed var(--line);margin:0 14px;position:relative}
+.tear::before,.tear::after{content:"";position:absolute;top:-12px;width:22px;height:22px;border-radius:50%;background:rgba(20,10,30,.55)}
+.tear::before{left:-26px}.tear::after{right:-26px}
+.barcode{height:56px;margin:16px 20px 6px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 7px,transparent 7px 9px,var(--ink) 9px 10px,transparent 10px 13px)}
+.pass .foot{text-align:center;font-size:13px;color:var(--muted);padding:0 20px 18px}
+.saved{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+.saved div{flex:1;background:rgba(255,255,255,.14);color:#fff;border-radius:16px;padding:12px;text-align:center}
+.saved b{display:block;font-size:22px}
+.saved small{opacity:.85;font-size:12px}
+.mbtns{display:flex;gap:10px;margin-top:14px}
+.mbtns button{flex:1;height:54px;border-radius:16px;font-weight:800;font-size:16px;background:#fff;color:#1d1630}
+.mbtns button.p{background:linear-gradient(90deg,var(--hot),var(--sun));color:#fff}
+
+/* passport */
+.drawer{position:fixed;inset:0 0 0 auto;width:min(420px,100%);background:var(--bg);z-index:60;transform:translateX(100%);transition:transform .35s cubic-bezier(.2,1,.3,1);display:flex;flex-direction:column;box-shadow:-20px 0 40px -20px rgba(0,0,0,.4)}
+.drawer.show{transform:none}
+.drawer .dh{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid var(--line)}
+.drawer .dh h3{font-size:22px}
+.drawer .body{padding:16px;overflow-y:auto;flex:1}
+.pstats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.pstats div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;text-align:center}
+.pstats b{display:block;font-size:20px}
+.pstats small{font-size:11px;color:var(--muted)}
+.stamps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stamp{aspect-ratio:1;border-radius:50%;border:3px double var(--c);color:var(--c);display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;text-align:center;line-height:1.05;padding:6px;animation:stampIn .5s both}
+.stamp b{font-size:22px}
+.stamp small{font-size:9px;text-transform:uppercase;letter-spacing:.05em}
+@keyframes stampIn{from{transform:scale(2.2) rotate(var(--rot));opacity:0}to{transform:scale(1) rotate(var(--rot))}}
+.empty{text-align:center;color:var(--muted);padding:40px 10px}
+.scrim{position:fixed;inset:0;z-index:55;background:rgba(0,0,0,.35);display:none}
+.scrim.show{display:block}
+
+#toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,120px);z-index:80;background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:999px;font-weight:600;font-size:15px;transition:transform .35s cubic-bezier(.2,1.4,.4,1);max-width:calc(100% - 32px);text-align:center;box-shadow:var(--shadow)}
+#toast.show{transform:translate(-50%,0)}
+.float{position:fixed;z-index:90;pointer-events:none;font-weight:800;color:var(--hot);animation:floatUp .9s forwards}
+@keyframes floatUp{to{transform:translateY(-50px);opacity:0}}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:70}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 0 30px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap hbar">
+    <button class="logo" id="home-link" aria-label="Fernweh home">🧳 <span>Fernweh</span></button>
+    <div class="hstats">
+      <span class="pill hide-sm" title="Trips planned">✈️ <b id="h-trips">0</b></span>
+      <span class="pill" title="Money not spent">💸 <b id="h-saved">$0</b></span>
+      <button class="pill btn" id="open-passport">🛂 <span class="hide-sm">Passport</span></button>
+      <button class="iconbtn" id="mute" aria-label="Toggle sound">🔊</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- HOME -->
+  <section class="screen active" id="s-home">
+    <div class="hero">
+      <span class="eyebrow">✨ 0% travel · 100% anticipation</span>
+      <h1>Plan the trip.<br><em>Skip the airport.</em></h1>
+      <p class="sub">Your AI travel agent builds a dream itinerary in seconds. Browse, tweak, pick a seat, "book" it. You never pay. You never pack. You just feel great.</p>
+
+      <div class="planner">
+        <div class="where" id="where">
+          <div class="field">
+            <span class="pin">📍</span>
+            <input id="dest" placeholder="Where to? Anywhere." autocomplete="off" aria-label="Destination">
+          </div>
+          <button class="spin" id="spin">🎰 Surprise me</button>
+        </div>
+        <div class="sugg" id="sugg"></div>
+
+        <div class="lbl">Your vibe <span style="text-transform:none;font-weight:500">(pick a few)</span></div>
+        <div class="chips" id="vibes"></div>
+
+        <div class="row2">
+          <div>
+            <div class="lbl">How long</div>
+            <div class="stepper"><button id="dminus" aria-label="Fewer days">−</button><b id="days">5 days</b><button id="dplus" aria-label="More days">+</button></div>
+          </div>
+          <div>
+            <div class="lbl">Budget (pretend)</div>
+            <div class="tiers" id="tiers"></div>
+          </div>
+        </div>
+
+        <button class="cta" id="plan-btn">Plan my trip ✨</button>
+        <p class="fine">No sign-up, no card, no flights. Plans stay on this device.</p>
+      </div>
+    </div>
+    <div class="ticker"><div id="ticker"></div></div>
+  </section>
+
+  <!-- PLAN -->
+  <section class="screen" id="s-plan">
+    <button class="back" id="back-home">← New trip</button>
+    <div class="banner" id="banner"></div>
+    <div class="hype"><b>🔥 Trip hype</b><div class="bar"><i id="hype"></i></div><span class="pct" id="hype-pct">0%</span></div>
+    <div class="grid">
+      <div><div class="tabs" id="tabs"></div><div id="itin"></div><div id="explore" style="display:none"></div></div>
+      <div class="aside" id="aside"></div>
+    </div>
+  </section>
+
+  <!-- BOOK -->
+  <section class="screen" id="s-book">
+    <button class="back" id="back-plan">← Back to itinerary</button>
+    <div class="bookgrid">
+      <div>
+        <h2>Pick your seat 💺</h2>
+        <p style="color:var(--muted);margin-top:6px">Front rows are first class. Go on. It's free.</p>
+        <div class="plane">
+          <div class="seats" id="seats"></div>
+          <div class="legend"><span><i style="background:var(--sun)"></i>First</span><span><i style="background:color-mix(in srgb,var(--sea) 40%,var(--card))"></i>Open</span><span><i style="background:var(--line)"></i>Taken</span><span><i style="background:var(--hot)"></i>Yours</span></div>
+        </div>
+      </div>
+      <div>
+        <h2>Add the extras</h2>
+        <div id="extras"></div>
+        <button class="hold" id="hold" disabled><i></i><span id="hold-txt">Pick a seat first</span></button>
+        <p class="fine">Hold to book. $0.00 will be charged. Forever.</p>
+      </div>
+    </div>
+  </section>
+  <footer>Fernweh (n.) — an ache for distant places. Nothing on this site is real, and that's the point. 💛</footer>
+</main>
+
+<!-- booked modal -->
+<div class="modal" id="modal"><div class="box" id="modal-box"></div></div>
+<!-- tour booking sheet -->
+<div class="modal sheet" id="sheet"><div class="box sbox" id="sheet-box" role="dialog" aria-label="Book a tour"></div></div>
+
+<!-- passport -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Passport">
+  <div class="dh"><h3>🛂 Your passport</h3><button class="iconbtn" id="close-passport" aria-label="Close">✕</button></div>
+  <div class="body" id="passport-body"></div>
+</aside>
+
+<div id="toast"></div>
+<canvas id="confetti"></canvas>
+
+<script>
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const rnd = a => a[Math.floor(Math.random()*a.length)];
+const ri = (a,b) => Math.floor(a + Math.random()*(b-a+1));
+const shuffle = a => { a=[...a]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]} return a; };
+const money = n => '$' + Math.round(n).toLocaleString('en-US');
+const wait = ms => new Promise(r => setTimeout(r, ms));
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const store = {
+  get(k,d){ try{ const v = JSON.parse(localStorage.getItem(k)); return v ?? d; }catch{ return d; } },
+  set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch{} }
+};
+
+/* ---------- sound + haptics ---------- */
+let muted = store.get('fw_muted', false), actx;
+function blip(f=660, d=.08, type='sine', vol=.06){
+  if (muted) return;
+  try{
+    actx = actx || new (window.AudioContext||window.webkitAudioContext)();
+    const o = actx.createOscillator(), g = actx.createGain();
+    o.type = type; o.frequency.value = f;
+    g.gain.setValueAtTime(vol, actx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.0001, actx.currentTime + d);
+    o.connect(g); g.connect(actx.destination); o.start(); o.stop(actx.currentTime + d);
+  }catch{}
+}
+const chord = () => [523,659,784,1047].forEach((f,i)=>setTimeout(()=>blip(f,.25,'triangle',.07), i*90));
+const buzz = (ms=12) => { try{ navigator.vibrate && navigator.vibrate(ms); }catch{} };
+function tap(f){ blip(f); buzz(); }
+
+/* ---------- data ---------- */
+const DB = {
+  kyoto:{name:"Kyotoast",country:"Jaypan",code:"KYT",alias:["kyoto","japan"],emoji:"⛩️",c:["#ff5f6d","#ffc371"],temp:"18°C, crisp & clear",base:980,
+    act:["Sunrise walk through 10,000 vermilion gates at Fushimi In-a-Hurry","Arashiyummy bamboo grove before the tour buses wake up","Tea ceremony in a 300-year-old wooden townhouse","Bike along the Kamo-Kamo River with a convenience-store egg sandwich","The Golden-ish Pavilion mirrored on a glass-still pond","Lantern-lit stroll through Glow-Gion at dusk","Moss-garden meditation at a hidden Zen-ish temple","Day trip to Narnara to bow at extremely polite deer","The Overthinker's Path under a canopy of maples"],
+    food:["Kaiseki dinner: 11 tiny, perfect courses","Nishikinda Market snack crawl","Matcha-everything afternoon in Uji-Wiji","8-seat ramen counter at midnight","Yudofu tofu lunch by a temple garden"],
+    stay:["Ryokan with a private cedar onsen","Riverside design hotel with tatami suites","An entire wooden townhouse, just yours"]},
+  lisbon:{name:"Lisbonbon",country:"Portugalactic",code:"LBB",alias:["lisbon","lisboa","portugal"],emoji:"🚋",c:["#f7971e","#ffd200"],temp:"24°C, golden light all day",base:620,
+    act:["Rattle up the hills on vintage Tram 28-ish","Get lost in Alfamous's tiled alleyways","Sunset at the Miradouro do Wow with a cold vinho verde","Day trip to the fairytale palaces of Sintrance","Surf lesson at Costa da Caparickety","LX Fractory bookstore browse and street art","Fado night in a candle-lit tasca","Ferry across the Tagush just for the view"],
+    food:["Pastéis de nata still warm from the oven","Grilled sardines at a family-run tasca","Seafood feast with a bib on (mandatory)","Time-Off Market tasting spree","Bifana sandwich and an espresso standing up"],
+    stay:["Pastel-pink boutique hotel in Príncipe Realish","Rooftop-pool suite with river views","Azulejo-tiled apartment in Alfamous"]},
+  reykjavik:{name:"Reykjaview",country:"Niceland",code:"RKV",alias:["reykjavik","iceland"],emoji:"🌋",c:["#4facfe","#00f2fe"],temp:"6°C, aurora forecast: strong",base:740,
+    act:["Soak in the milky-blue Blew Lagoon","Chase the northern lights at 1am with hot cocoa","Walk behind the Seljaland-o-foss waterfall","Golden Circus road trip: geysers, rifts, gold falls","Black-sand beach at Reynisfjar-far","Glacier hike with crampons and a very calm guide","Snorkel between two tectonic plates at Silfrah","Whale watching from the old harbour"],
+    food:["Lamb soup in a tin-roofed café","The famous harbour hot dog, with everything","Langoustine lunch in a fishing village","New Nordic-ish tasting menu, foraged and fermented"],
+    stay:["Glass-roof bubble cabin under the aurora","Minimalist harbour hotel with a sauna","Turf-roof cottage by a fjord"]},
+  marrakech:{name:"Marrakeshmish",country:"Moroccoco",code:"MRK",alias:["marrakech","marrakesh","morocco"],emoji:"🕌",c:["#e65c00","#f9d423"],temp:"28°C, warm desert breeze",base:560,
+    act:["Lose yourself (on purpose) in the medina souks","Jardin Majorelly and its impossibly blue walls","Hammam scrub that resets your entire soul","Sunset camel ride in the Agafar-away desert","Rooftop mint tea above Jemaa el-Fun-aa","Day trip to the Atlass Mountains","Hot-air balloon at sunrise over the palm groves","Bahia-ha Palace, ceiling by ceiling"],
+    food:["Slow-cooked tagine in a courtyard riad","Night-market food stalls, snail soup included","Cooking class: couscous from scratch","Pastilla and fresh orange juice for breakfast"],
+    stay:["Riad with a plunge pool and orange trees","Desert camp under a billion stars","Palace hotel with seven courtyards"]},
+  amalfi:{name:"Amalfizzy Coast",country:"Itsaly",code:"AMZ",alias:["amalfi","amalfi coast","italy"],emoji:"🍋",c:["#ff9966","#ff5e62"],temp:"27°C, sea like glass",base:690,
+    act:["Rent a little wooden boat and find hidden coves","Path of the Odds hike above the clouds","Positanno beach day with a striped umbrella","Ferry hop to Caprisun and the Blew Grotto","Lemon grove tour with limoncello 'samples'","Ravelloooo gardens and a clifftop concert","Cliff-jump into the Fjordo di Furious","Vespa ride along the hairpin coast road"],
+    food:["Spaghetti alle vongole on a terrace over the sea","Wood-fired pizza in Naplease, the real one","Gelato tour (three is a reasonable number)","Fresh mozzarella still warm from the dairy","Sunset aperitivo with spritz and olives"],
+    stay:["Clifftop hotel with a lemon-tree terrace","Pastel villa with an infinity pool","Fisherman's cottage with sea-view windows"]},
+  queenstown:{name:"Queensclown",country:"New Zealous",code:"QCL",alias:["queenstown","new zealand"],emoji:"🏔️",c:["#11998e","#38ef7d"],temp:"15°C, bluebird skies",base:1350,
+    act:["Bungee jump off the original Kawa-wow Bridge","Scenic flight over Milfjord Sound","Jet boat through the Shotover-and-over canyons","Gondola up for a luge race at sunset","Hike Ben Lomondo for the big view","Wine tasting in the Gibbs-stone Valley","Lake Wakatippy paddleboard at dawn","Stargazing in a dark-sky reserve"],
+    food:["The legendary burger that has its own queue","Lamb and pinot at a vineyard lunch","Fish and chips by the lake","Hot pies after a big hike"],
+    stay:["Lakefront lodge with a fireplace","Glass pod on a mountain ridge","Alpine chalet with a hot tub"]},
+  bali:{name:"Ubudoo, Bally",country:"Indoneasy",code:"UBU",alias:["ubud","bali","indonesia"],emoji:"🌴",c:["#56ab2f","#a8e063"],temp:"30°C, tropical & dreamy",base:890,
+    act:["Tegalla-lalang rice terraces at golden hour","Sunrise trek up Mount Batter","Swing over the jungle (everyone does it, so will you)","Water purification ritual at Tirta Empty","Sacred Monkey-Business Forest (guard your sunglasses)","Waterfall hopping: Tibu-mama and Tukad Cepung-pung","Sound-bath and yoga in an open-air shala","Silver-jewellery workshop with a local artisan"],
+    food:["Babi guling at a legendary warung","Smoothie bowl the size of your head","Cooking class in a family compound","Candle-lit dinner in a rice field"],
+    stay:["Jungle villa with a private infinity pool","Bamboo treehouse above a river","Wellness resort with a daily massage"]},
+  patagonia:{name:"Pantsagonia",country:"Chilly & Argenteeny",code:"PTS",alias:["patagonia","chile","argentina"],emoji:"🦙",c:["#2b5876","#4e4376"],temp:"11°C, wild & windy",base:1180,
+    act:["Trek to the base of the Torres del Pain towers","Watch Perito Morenope glacier calve into the lake","Kayak among floating blue icebergs","Horse ride with gauchos across the steppe","Spot guanacos, condors and a shy puma","Hike to Laguna de los Trees at sunrise","Boat cruise through the fjords","Ice trek with whisky on 1,000-year-old ice"],
+    food:["Whole lamb roasted over an open fire","Empanadas warm in a mountain refugio","Malbec and steak in El Calafancy","Calafate-berry ice cream (legend says you'll return)"],
+    stay:["Geodesic dome with a view of the towers","Remote estancia with a wood stove","Eco-lodge at the edge of the world"]},
+  mexicocity:{name:"Mexicool City",country:"Mexicool",code:"MXC",alias:["mexico city","mexico","cdmx"],emoji:"🌮",c:["#ee0979","#ff6a00"],temp:"23°C, blue skies, jacaranda season",base:450,
+    act:["Teotihuacan't-Believe-It pyramids at sunrise by hot-air balloon","The Very Blue House of a very famous painter","Trajinera party boat through Xochimilcool","Lucha libre night: masks mandatory","Bike Reformup on car-free Sunday","The Anthropology-ish Museum, the whole morning","Mezcal tasting in a tiny Roma-ntic bar","Wander Coyoacan-can's plazas and markets"],
+    food:["Taco crawl: al pastor, suadero, campechano","Churros and thick chocolate at 1am","Tasting menu at a world-famous mole kitchen","Market breakfast of tlacoyos and fresh juice","Street elote with all the chilli"],
+    stay:["Art-deco hotel in Roma Nortish","Rooftop-pool loft in Condesa-ish","Colonial mansion turned boutique hotel"]},
+  santorini:{name:"Santorinny",country:"Grease",code:"SNY",alias:["santorini","greece"],emoji:"🏛️",c:["#2193b0","#6dd5ed"],temp:"26°C, sea breeze, zero clouds",base:710,
+    act:["The famous Oi-Yeah sunset (arrive early, get the spot)","Catamaran cruise to the volcanic hot springs","Redder Beach and Blacker Beach in one afternoon","Clifftop hike from Fira-Fira to Oi-Yeah","Ancient Akrotiri-ri, a Bronze Age city under ash","Wine tasting on volcanic vineyards","Swim off a boat into impossibly blue water","Donkey-free walk down 600 steps to the old port"],
+    food:["Fresh octopus grilled at a seaside taverna","Gyros at 2am, no regrets","Fava, tomato fritters and cold white wine","Cliff-edge dinner as the caldera turns pink"],
+    stay:["Cave suite with a private plunge pool","Whitewashed villa above the caldera","Boutique hotel with an infinity pool facing the sunset"]},
+  capetown:{name:"Cape Tune",country:"South Africool",code:"CTN",alias:["cape town","capetown","south africa"],emoji:"🐧",c:["#f12711","#f5af19"],temp:"25°C, sunny with a Cape breeze",base:1020,
+    act:["Cable car up Table-ish Mountain","Waddle with penguins at Boulder Dash Beach","Cape Pointless road trip along Chapman's Peek","Paraglide off Lion's Headache","Bo-Kaapow's rainbow houses","Harbour history tour with an old sea dog","Shark-cage dive (or a calm tidal pool, your call)","Winelands day in Stellenbosh-gosh and Franschhoek-hoek"],
+    food:["Cape Malay curry in Bo-Kaapow","Braai feast with a sunset view","Oysters and bubbly at the waterfront","Farm-to-table lunch among the vineyards"],
+    stay:["Clifftop villa in Camps Bae","Boutique hotel at the foot of Table-ish Mountain","Vineyard cottage in the Winelands"]}
+};
+const SUGG = ["kyoto","lisbon","reykjavik","marrakech","amalfi","santorini","bali","mexicocity"];
+const VIBES = [
+  {k:"food",l:"🍜 Foodie",x:["Chef's-counter tasting menu you 'booked months ago'","Street-food tour with a local who knows everyone"]},
+  {k:"culture",l:"🏛️ Culture",x:["Private after-hours museum tour","Workshop with a master craftsperson"]},
+  {k:"nature",l:"🌿 Nature",x:["Secret swimming hole only the guide knows","Dawn hike to a viewpoint with nobody else there"]},
+  {k:"night",l:"🍸 Nightlife",x:["Speakeasy behind an unmarked door","Rooftop DJ set until the sun comes up"]},
+  {k:"chill",l:"🧘 Chill",x:["Spa afternoon with zero plans","Hammock, a book, and nowhere to be"]},
+  {k:"adv",l:"🧗 Adventure",x:["Sunrise paraglide over the coastline","Off-road ATV trail to a hidden canyon"]},
+  {k:"luxe",l:"💎 Luxe",x:["Private yacht charter with a chef on board","Helicopter tour, champagne included"]},
+];
+const TIERS = [
+  {n:"Backpacker",e:"🎒",m:.55,f:.7,cab:"Economy"},
+  {n:"Comfy",e:"🛋️",m:1,f:1,cab:"Premium"},
+  {n:"Unhinged luxury",e:"🛥️",m:3.2,f:4.6,cab:"First"},
+];
+const THINK = ["Reading 3,912 reviews so you don't have to","Scanning flights from the comfort of your couch","Found a hidden gem locals don't post about","Talking the hotel into a free upgrade","Working out the ideal number of gelato stops","Checking the sunset times","Avoiding every tourist trap we know","Making sure there's a nap on day 3","Picking the window seat with the best view","Reserving a table that 'doesn't exist'"];
+const DAYTITLES = ["The big one","Slow morning, big night","Local secrets","Chasing golden hour","Off the map","Eat everything","Main-character energy","Treat yourself","No alarms","Wander day"];
+const TAGS = ["🔥 Trending","💎 Hidden gem","📸 Very photogenic","🤫 Locals only","⭐ 4.9","🏆 Award winner"];
+const AIRLINES = ["Daydream Air","Somedays Airways","Maybe Air","Cloud Nine Airlines","Fernweh Air"];
+const TICKS = ["Someone in Ohio just booked 9 days in Kyotoast 🎌","Lisbonbon is trending tonight 🚋","Someone just 'saved' $14,200 on Santorinny 🏛️","A dentist in Leeds just planned Pantsagonia for the 4th time 🦙","Mount Batter sunrise: 212 people pretending right now 🌋","Someone picked seat 1A. Again. ✈️","Reykjaview aurora tonight: imaginary but strong 🌌","Mexicool City taco crawl got 48 new hearts 🌮","Queensclown bungee: 0 jumps, 100% adrenaline 🪂","Cape Tune penguins say hi 🐧"];
+
+/* ---------- explore data: attractions, sightseeing, hidden gems, guides ---------- */
+const EXP = {
+  kyoto:{guides:["Aiko","Kenji","Yui"],
+    attr:[["Fushimi In-a-Hurry Shrine","Thousands of vermilion gates winding up a sacred mountain. Take your time anyway."],["Blinkaku-ji","The Golden-ish Pavilion, shimmering over a mirror pond."],["Kiyomizzle-dera","A wooden temple stage hanging over the whole city."],["Nijolly Castle","A shogun's palace with floors that 'sing' to catch intruders."]],
+    sight:[["Arashiyummy Bamboo Grove","Towering green stalks. Go at 7am for the magic."],["The Overthinker's Path","A 2km canal walk for thinking about everything at once."],["Glow-Gion at dusk","Lantern-lit teahouse streets and wooden facades."]],
+    gems:[["Otagiggle Temple","1,200 mossy stone statues, each with a different (often silly) face."],["Kurama-Drama to Kibuneville trail","Forest hike ending at riverside dining platforms."],["Daitook-a-Nap-ji","Silent Zen rock gardens most tour groups skip."]]},
+  lisbon:{guides:["Mateus","Inês","Rui"],
+    attr:[["Bel-yum Tower","A 500-year-old fortress guarding the river mouth. Pastry shop next door."],["Jerónimost Monastery","Lace-like stone cloisters and a lot of history."],["São Gorgeous Castle","Hilltop ramparts with the best panorama in town."],["Penna-Colada Palace, Sintrance","A candy-coloured palace on a misty hilltop."]],
+    sight:[["Miradouro do Wow","The highest viewpoint in town, made for sunset."],["Tram 28-ish route","Rattling through the old city's steepest streets."],["Alfamous alleyways","Laundry lines, tiles and fado drifting from windows."]],
+    gems:[["Quinta da Regal-ish Well","A spiral 'initiation well' plunging into the earth."],["Cacilhooray riverside","Ferry over for grilled fish and a skyline view."],["Panteão National-ish rooftop","A quiet dome terrace with a 360° view."]]},
+  reykjavik:{guides:["Sigrún","Einar","Katla"],
+    attr:[["Hallgrimace Church","The rocket-shaped church with a tower view."],["The Blew Lagoon","Milky-blue geothermal water in a lava field."],["Goldfoss","A two-tier waterfall thundering into a canyon."],["Harpoon Concert Hall","Glass honeycomb on the harbour."]],
+    sight:[["Golden Circus drive","Geysers, rift valleys and waterfalls in one loop."],["Sun Voyagerrr walk","A seafront stroll to the steel Viking ship."],["Reynisfjar-far","Black sand, basalt columns and wild waves."]],
+    gems:[["Selja-va-va-voom Pool","A 1923 pool tucked into a mountain valley."],["Grotto-Lotto Lighthouse","Locals' favourite northern-lights spot."],["Brrr-uarfoss","A small waterfall of impossible electric blue. Very cold."]]},
+  marrakech:{guides:["Youssef","Fatima","Hamid"],
+    attr:[["Jardin Majorelly","Cactus gardens and walls of famous cobalt blue."],["Bahia-ha Palace","Painted ceilings and courtyards of zellij tile."],["Koutoubig Mosque","The minaret that defines the skyline."],["Jemaa el-Fun-aa","The square that becomes a carnival at night."]],
+    sight:[["The medina souks","Leather, lanterns, spices and gentle haggling."],["Ben Use-If Madrasa","Cedar and stucco carved like lace."],["The Saadian-ish Tombs","A royal resting place hidden for centuries."]],
+    gems:[["Le Jardin Very Secret","A quiet garden right in the middle of the medina."],["Mellow Spice Market","Pyramids of spice in the old quarter."],["Dar El Barista","Coffee from 200 origins served in a palace."]]},
+  amalfi:{guides:["Giulia","Marco","Chiara"],
+    attr:[["Positanno","The postcard: pastel houses tumbling to the sea."],["The Blew Grotto, Caprisun","A sea cave that glows electric blue."],["Pompayy","A Roman city frozen in time."],["Villa Ruffle-o","Clifftop gardens that inspired a very famous composer."]],
+    sight:[["Path of the Odds","A hike above the clouds and the coastline."],["Amalfizzy Cathedral","Striped stone and a grand staircase."],["Terrace of Infinity and Beyond","Ravelloooo's balcony of marble busts over the sea."]],
+    gems:[["Fjordo di Furious","A tiny beach in a fjord under an arched bridge."],["A-Tiny","The smallest town in Itsaly, 5 minutes from Amalfizzy."],["Valle delle Fairy-ere","A cool, green waterfall hike behind town."]]},
+  queenstown:{guides:["Wiremu","Hannah","Tama"],
+    attr:[["Milfjord Sound","Fjord cliffs, waterfalls and seals."],["Skyline-ish Gondola","Ride up for the view, luge back down."],["Kawa-wow Bridge","Home of the world's first bungee-ish jump."],["Sparrowtown","A gold-rush village glowing gold in autumn."]],
+    sight:[["Glen-Orchestra Road","45 minutes of the most beautiful driving on earth."],["Lake Wakatippy","Glacier-carved, clear, and very blue."],["Ben Lomondo summit","The big climb with the bigger view."]],
+    gems:[["Mocha Lake","A still mountain lake with nobody around."],["Twelve-ish Mile Delta","Where they filmed fantasy epics, quietly."],["Rob's Cove","A turquoise inlet a short walk from the road."]]},
+  bali:{guides:["Made","Ketut","Putu"],
+    attr:[["Tegalla-lalang Rice Terraces","Emerald steps carved into the jungle."],["Tirta Empty","A holy spring temple for a purification ritual."],["Ulu-What-Tu Temple","Clifftop temple with a fire-dance at sunset."],["Sacred Monkey-Business Forest","Mossy temples and very cheeky macaques."]],
+    sight:[["Mount Batter sunrise","Watch the sun rise from an active volcano."],["Camp-Fun Ridge Walk","An easy ridge trail through tall grass."],["Tanah Lots-a-Sunset","A sea temple on its own rock."]],
+    gems:[["Sekumple Waterfalls","Seven falls in a hidden green valley."],["Sideways Valley","Bally 30 years ago: quiet rice fields and weavers."],["Jati-lu-wheee Terraces","Far bigger and far quieter than the famous ones."]]},
+  patagonia:{guides:["Valentina","Tomás","Matías"],
+    attr:[["Torres del Pain","Three granite towers above a glacial lake. Worth the leg ache."],["Perito Morenope Glacier","A wall of ice that calves with a roar."],["Mount Fitz Royalty","The jagged peak of every poster."],["Greyish Glacier","Blue icebergs drifting in a grey lake."]],
+    sight:[["Laguna de los Trees","Sunrise turns the peaks pink above the lake."],["Mirador Las Tourists","The classic towers view, up close."],["Lago Peek-a-hoé","Turquoise water under jagged horns of rock."]],
+    gems:[["Laguna Torré-ific at dawn","Icebergs and silence before the crowds."],["The Marvel Caves","Swirling blue marble caverns on a vast lake."],["Estancia Pristina","A remote ranch reached only by boat."]]},
+  mexicocity:{guides:["Diego","Ximena","Andrés"],
+    attr:[["Teotihuacan't-Believe-It","Climb the Pyramid of the Sun-ish."],["The Very Blue House","Where a very famous painter lived and painted."],["Zócool-o & Templo Mayor-ish","An ancient temple under the main square."],["Chapulte-peck Castle","A hilltop castle in a park bigger than a famous park."]],
+    sight:[["Xochimilcool canals","Colourful boats, mariachis and floating gardens."],["Palacio de Bellas Artsy","Art-deco marble and huge murals."],["Coyoacan-can","Leafy plazas, churros and old mansions."]],
+    gems:[["Biblioteca Vast-concelos","A floating 'megalibrary' with a whale skeleton."],["Casa de los Colores","A modernist house of colour and light."],["Mercado de Ja-mmm-aica","A whole market of flowers."]]},
+  santorini:{guides:["Eleni","Nikos","Sofia"],
+    attr:[["Oi-Yeah","Blue domes, white houses and the famous sunset."],["Akrotiri-ri","A Bronze Age city preserved in volcanic ash."],["Redder Beach","Rust-red cliffs above dark sand."],["Fira-Fira","The clifftop capital over the caldera."]],
+    sight:[["Fira-to-Oi-Yeah caldera trail","10km along the rim of a volcano."],["A-Moody Bay","Steps down to a tiny harbour of fish tavernas."],["Scary-os Rock","A ruined castle on a rock above the sea."]],
+    gems:[["Pyr-gorgeous Village","A hilltop maze of quiet lanes and chapels."],["Vlych-nada Beach","Wind-carved cliffs like a moonscape."],["Mega-lots-a-Chori bell towers","Old bell towers with almost nobody around."]]},
+  capetown:{guides:["Thandi","Sipho","Lerato"],
+    attr:[["Table-ish Mountain","The flat-topped icon, by cable car or boots."],["Boulder Dash Beach","A beach where penguins are the locals."],["Cape Pointless","Cliffs at the bottom of the continent. Very much the point."],["The Old Harbour Museum","Stories of the sea and the city, told by an old sea dog."]],
+    sight:[["Chapman's Peek Drive","A road carved into a cliff over the ocean."],["Bo-Kaapow","Bright houses and Cape Malay history."],["Lion's Headache","A short climb for a full-moon view."]],
+    gems:[["Chalk Bay harbour","Fishing boats, seals and great fish & chips."],["Kirsten-gosh canopy walk","A bridge that snakes through the treetops."],["Signal Chill at sunset","Picnic blankets and a glowing city."]]},
+};
+function expFor(d){
+  if (EXP[d.key]) return EXP[d.key];
+  const n=d.name.split(',')[0];
+  return {guides:["Noor","Luca","Sam"],
+    attr:[[`${n} Old Town`,"Cobbled lanes, grand squares and a lot of history."],[`The Grand Cathedral of ${n}`,"Soaring arches and a tower climb with a view."],[`${n} National Museum`,"The story of the place in a single afternoon."],[`Central Market Hall`,"Where the whole city comes to shop and snack."]],
+    sight:[[`${n} Skyline Lookout`,"The highest viewpoint, best at sunset."],[`The Riverside Promenade`,"An easy walk with cafés every few steps."],[`The Botanical Gardens`,"Glasshouses, rare flowers and quiet benches."]],
+    gems:[[`The Secret Courtyard Café`,"Through an unmarked door, a garden few tourists find."],[`The Old Tram Depot Market`,"A weekend market in a disused depot."],[`Sunrise Pier`,"Where fishermen and early birds watch the day start."]]};
+}
+const TOURS = [
+  ["Skip-the-line {a} with an expert guide","2.5h","🎟️","🏆 Bestseller","Walk past the queue. Hear stories you won't find on the plaque."],
+  ["{city} in a day: {a} + {b}","8h","🚌","🔥 Likely to sell out","All the big names in one easy day. Lunch included."],
+  ["Golden-hour photo walk at {s}","2h","📸","⭐ Top rated","A pro shows you the angles. You leave with photos worth posting."],
+  ["{city} street-food tasting tour","3.5h","🍢","🏆 Bestseller","12 tastings across 6 stops. Skip breakfast."],
+  ["Sunset at {s} with drinks","3h","🌅","💛 Traveller favourite","The best light of the day, a cold drink in hand."],
+  ["Early access: {a} before the crowds","2h","⏰","🔥 Likely to sell out","Doors open for your group 45 minutes before everyone else."],
+  ["{city} by night: lights, legends & a nightcap","3h","🌙","⭐ Top rated","Old legends, hidden bars, and the city lit up."],
+];
+const PRIV = [
+  ["Private guide day: {a} & {b}","7h","🧭","Your own expert, your own pace, a route built around you."],
+  ["1:1 cooking class in a local home kitchen","4h","👩‍🍳","Shop the market, cook together, eat everything. Recipes sent after."],
+  ["Personal photographer at {s}","2h","📸","40+ edited photos. Bring a nice outfit."],
+  ["Private driver & guide: beyond {city}","9h","🚘","Door-to-door day trip with stops you choose."],
+  ["Behind the scenes at {a} with a historian","3h","📜","Areas closed to the public. Ask anything."],
+  ["1:1 hidden-gems walk: {g} and more","3h","💎","The places your guide takes their own friends."],
+  ["Private sunset charter","3h","🛥️","Just you, a skipper and a chilled bottle of something."],
+];
+const CATS = [{k:'itin',l:'🗓️ Itinerary'},{k:'attr',l:'📍 Attractions'},{k:'sight',l:'👀 Sightseeing'},{k:'tours',l:'⭐ Top tours'},{k:'gems',l:'💎 Hidden gems'},{k:'priv',l:'🤝 Private 1:1'}];
+const INTRO = {attr:"The famous ones. Worth it every time.",sight:"Views, walks and jaw-drop moments.",tours:"Highly rated by thousands of travellers.",gems:"Places locals hope you never hear about.",priv:"Advanced 1:1 excursions: just you and an expert guide. Pick your day, time and guide."};
+
+/* ---------- state ---------- */
+const S = { days:5, vibes:new Set(["food"]), tier:1, dest:null, plan:[], pools:{}, flight:null, hotel:null, hype:0, seat:null, extras:new Set(), start:null, timers:[], tab:'itin', explore:{}, guides:[], added:{}, exc:[] };
+let profile = store.get('fw_profile', {trips:0, saved:0, stamps:[]});
+
+function findDest(q){
+  const norm = v => v.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z ]/g,'').trim();
+  const n = norm(q), nz = n.replace(/ /g,'');
+  if (!n) return null;
+  const E = Object.entries(DB);
+  for (const [k,d] of E){ const nm=norm(d.name); if (nm===n || nm.replace(/ /g,'')===nz || nm.split(' ')[0]===n) return {...d,key:k}; }
+  const pretty = q.trim().split(/\s+/).map(w=>w[0].toUpperCase()+w.slice(1)).join(' ');
+  for (const [k,d] of E){ if ([k,...(d.alias||[])].some(a => a===n || a.replace(/ /g,'')===nz || n.includes(a))) return {...d,key:k,lookalike:pretty}; }
+  for (const [k,d] of E){ if (n.length>=4 && norm(d.name).includes(n)) return {...d,key:k}; }
+  const name = q.trim().replace(/\s+/g,' ').replace(/\b\w/g,c=>c.toUpperCase()).slice(0,28);
+  const pals = [["#fc466b","#3f5efb"],["#f7797d","#fbd786"],["#00b09b","#96c93d"],["#8e2de2","#4a00e0"],["#ff7e5f","#feb47b"]];
+  return { key:"x", name, country:"A place worth dreaming about", code:(name.replace(/[^A-Za-z]/g,'').slice(0,3)||'ZZZ').toUpperCase(), emoji:rnd(["🌍","🗺️","🧭","🏝️","🌄"]), c:rnd(pals), temp:`${ri(16,29)}°C, suspiciously perfect`, base:ri(520,1300),
+    act:[`Wander ${name}'s old town with no map`,`Sunrise from the highest viewpoint in ${name}`,`Guided walk with a local who's lived here 40 years`,`The museum everyone says you can't skip`,`Day trip to the most beautiful village nearby`,`Boat ride at golden hour`,`Browse the Saturday market for things you don't need`,`Find the quietest park and lie in the grass`,`Live music in a bar that's barely on Google`],
+    food:[`The dish ${name} is famous for, from the best spot`,`Breakfast at a café locals swear by`,`Long, lazy dinner with a view`,`Street-food crawl, no plan`,`Bakery run: the line is the point`],
+    stay:[`Boutique hotel in the heart of ${name}`,`Penthouse with a wraparound terrace`,`Charming guesthouse with a garden`] };
+}
+
+/* ---------- header / passport ---------- */
+function renderHeader(){ $('#h-trips').textContent = profile.trips; $('#h-saved').textContent = compact(profile.saved); }
+function compact(n){ return n>=1e6 ? '$'+(n/1e6).toFixed(1)+'M' : n>=1e4 ? '$'+Math.round(n/1000)+'k' : money(n); }
+function renderPassport(){
+  const st = profile.stamps;
+  const lev = profile.trips>=20?"Imaginary Jetsetter 🌐":profile.trips>=10?"Frequent Dreamer ✨":profile.trips>=3?"Weekend Wanderer 🧭":"Armchair Explorer 🛋️";
+  $('#passport-body').innerHTML = `
+    <div class="pstats"><div><b>${profile.trips}</b><small>trips planned</small></div><div><b>${compact(profile.saved)}</b><small>not spent</small></div><div><b>${new Set(st.map(s=>s.code)).size}</b><small>places</small></div></div>
+    <p style="margin-bottom:4px;font-weight:600">Status: ${lev}</p>
+    <p style="margin-bottom:14px;color:var(--muted)">🎟️ ${profile.exc||0} tours & private excursions booked</p>
+    ${st.length ? `<div class="stamps">${st.slice().reverse().map((s,i)=>`<div class="stamp" style="--c:${s.color};--rot:${s.rot}deg;animation-delay:${i*.05}s"><small>${esc(s.name)}</small><b>${esc(s.code)}</b><small>${esc(s.date)}</small></div>`).join('')}</div>`
+      : `<div class="empty"><div style="font-size:48px">🛂</div><p>No stamps yet. Plan and "book" a trip to get your first.</p></div>`}`;
+}
+function openPassport(){ renderPassport(); $('#drawer').classList.add('show'); $('#scrim').classList.add('show'); tap(520); }
+function closePassport(){ $('#drawer').classList.remove('show'); $('#scrim').classList.remove('show'); }
+
+/* ---------- toast / floaters ---------- */
+let toastT;
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),2400); }
+function floater(el, txt){
+  const r = el.getBoundingClientRect(), f = document.createElement('div');
+  f.className='float'; f.textContent=txt; f.style.left=(r.left+r.width/2-14)+'px'; f.style.top=(r.top-6)+'px';
+  document.body.appendChild(f); setTimeout(()=>f.remove(), 900);
+}
+
+/* ---------- screens ---------- */
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  $('#s-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+  if (id!=='plan') clearTimers();
+}
+function clearTimers(){ S.timers.forEach(clearInterval); S.timers=[]; }
+
+/* ---------- home ---------- */
+function initHome(){
+  $('#sugg').innerHTML = SUGG.map(k=>`<button data-k="${k}">${DB[k].emoji} ${DB[k].name}</button>`).join('');
+  $('#sugg').onclick = e => { const b=e.target.closest('button'); if(!b) return; $('#dest').value = DB[b.dataset.k].name; tap(700); };
+  $('#vibes').innerHTML = VIBES.map(v=>`<button class="chip ${S.vibes.has(v.k)?'on':''}" data-k="${v.k}">${v.l}</button>`).join('');
+  $('#vibes').onclick = e => { const b=e.target.closest('.chip'); if(!b) return; const k=b.dataset.k;
+    S.vibes.has(k)?S.vibes.delete(k):S.vibes.add(k); b.classList.toggle('on'); tap(S.vibes.has(k)?760:440); };
+  $('#tiers').innerHTML = TIERS.map((t,i)=>`<button class="tier ${i===S.tier?'on':''}" data-i="${i}"><i>${t.e}</i>${t.n}</button>`).join('');
+  $('#tiers').onclick = e => { const b=e.target.closest('.tier'); if(!b) return; S.tier=+b.dataset.i;
+    document.querySelectorAll('.tier').forEach(x=>x.classList.toggle('on', x===b)); tap(600+S.tier*120);
+    if (S.tier===2) toast("Unhinged luxury unlocked. It costs the same: nothing. 🛥️"); };
+  const setDays = d => { S.days=Math.max(1,Math.min(14,d)); $('#days').textContent = S.days+(S.days===1?' day':' days'); };
+  $('#dminus').onclick = ()=>{ setDays(S.days-1); tap(400); };
+  $('#dplus').onclick = ()=>{ setDays(S.days+1); tap(700); if(S.days===14) toast("Two whole weeks. Your boss will never know."); };
+  $('#spin').onclick = spin;
+  $('#plan-btn').onclick = startPlan;
+  $('#dest').addEventListener('keydown', e => { if(e.key==='Enter') startPlan(); });
+  const items = shuffle(TICKS); $('#ticker').innerHTML = [...items,...items].map(t=>`<span>${t}</span>`).join('');
+}
+let spinning=false;
+async function spin(){
+  if (spinning) return; spinning=true;
+  const names = Object.values(DB).map(d=>d.emoji+' '+d.name), input=$('#dest');
+  $('#where').classList.add('spinning');
+  let delay=40, pick;
+  for (let i=0;i<22;i++){ pick=rnd(names); input.value=pick; blip(300+i*30,.04,'square',.03); await wait(delay); delay*=1.13; }
+  $('#where').classList.remove('spinning');
+  input.value = pick.replace(/^\S+\s/,''); chord(); buzz(30); confetti(60, input);
+  toast(`🎉 ${input.value}! Excellent choice.`); spinning=false;
+}
+
+/* ---------- planning ---------- */
+function fmtDate(d){ return d.toLocaleDateString('en-US',{month:'short',day:'numeric'}); }
+async function startPlan(){
+  let q = $('#dest').value; if (!q.trim()){ await spin(); q=$('#dest').value; }
+  const d = findDest(q); S.dest=d; S.hype=0; S.seat=null; S.extras=new Set();
+  document.documentElement.style.setProperty('--g1', d.c[0]); document.documentElement.style.setProperty('--g2', d.c[1]);
+  S.start = new Date(Date.now() + ri(18,70)*864e5);
+  const end = new Date(+S.start + (S.days-1)*864e5);
+  tap(880);
+  show('plan');
+  $('#banner').innerHTML = `<div class="big">${d.emoji}</div><small>${TIERS[S.tier].e} ${TIERS[S.tier].n} · ${esc(d.country)}</small><h2>${S.days} days in ${esc(d.name)}</h2>
+    <div class="meta"><span>📅 ${fmtDate(S.start)} – ${fmtDate(end)}</span><span>☀️ ${esc(d.temp)}</span><span>👥 Just you (and your imagination)</span>${d.lookalike?`<span>🤫 Not to be confused with ${esc(d.lookalike)}</span>`:''}</div>`;
+  setHype(0);
+  S.tab='itin'; S.added={}; S.exc=[]; $('#tabs').innerHTML=''; $('#explore').style.display='none'; $('#itin').style.display='';
+  $('#aside').innerHTML='';
+  const it=$('#itin');
+  it.innerHTML = `<div class="think"><h3><span class="dot"></span> Your AI agent is on it…</h3><div id="steps"></div></div>`;
+  const steps = shuffle(THINK).slice(0,5);
+  for (const s of steps){
+    const el = document.createElement('div'); el.className='step'; el.innerHTML=`<span class="ck">…</span>${s}`;
+    $('#steps').appendChild(el); await wait(ri(380,620));
+    el.classList.add('done'); el.querySelector('.ck').textContent='✓'; blip(880,.05);
+  }
+  await wait(250);
+  buildPlan(); buildExplore(); renderAside(); renderTabs();
+  it.innerHTML = '';
+  for (let i=0;i<S.plan.length;i++){ it.appendChild(dayEl(i)); blip(500+i*40,.06,'triangle'); await wait(i<3?260:90); }
+  addHype(12, null);
+  toast(`✨ Itinerary ready. Now browse tours & hidden gems ↑`);
+  const tb=$('#tabs'); tb.classList.add('nudge'); setTimeout(()=>tb.classList.remove('nudge'),600);
+  startLive();
+}
+function pool(k){
+  if (!S.pools[k] || !S.pools[k].length){
+    let base = k==='act' ? [...S.dest.act, ...VIBES.filter(v=>S.vibes.has(v.k)).flatMap(v=>v.x)] : [...S.dest.food];
+    S.pools[k] = shuffle(base);
+  }
+  return S.pools[k].pop();
+}
+function makeItem(k,t){
+  const m = TIERS[S.tier].m;
+  return { k, t, txt:pool(k), cost: Math.round((k==='food'?ri(14,80):ri(0,70))*m/5)*5, tag: Math.random()<.22?rnd(TAGS):'', liked:false };
+}
+function buildPlan(){
+  S.pools={}; S.plan=[];
+  const titles = shuffle(DAYTITLES);
+  for (let i=0;i<S.days;i++){
+    const title = i===0?"Touchdown ✨": (i===S.days-1 && S.days>1)?"One last look": titles[i%titles.length];
+    const slots=[["08:30","act"],["12:30","food"],["15:00","act"],["19:30", i%2?"act":"food"]];
+    S.plan.push({ title, items: slots.map(([t,k])=>makeItem(k,t)) });
+  }
+  const tier=TIERS[S.tier];
+  const fp = Math.round(S.dest.base*tier.f);
+  S.flight = { air:rnd(AIRLINES), was: Math.round(fp*1.35), price: fp, out:`${String(ri(6,22)).padStart(2,'0')}:${rnd(['05','20','35','50'])}`, dur:`${ri(3,15)}h ${ri(0,55)}m`, cab:tier.cab, watching:ri(4,19) };
+  const nightly = Math.round(ri(90,170)*tier.m*(S.tier===2?1.6:1)/5)*5;
+  S.hotel = { name:rnd(S.dest.stay), nightly, stars: S.tier===0?4:5, rating:(4.6+Math.random()*.39).toFixed(2) };
+}
+function dayDate(i){ return new Date(+S.start + i*864e5).toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}); }
+function dayEl(i){
+  const d = S.plan[i], el = document.createElement('div');
+  el.className='day'; el.dataset.day=i;
+  el.innerHTML = `<div class="dayh"><span class="n">DAY ${i+1}</span><h3>${esc(d.title)}</h3><span style="margin-left:auto;color:var(--muted);font-size:13px">${dayDate(i)}</span></div>
+    ${d.items.map((it,j)=>itemHTML(i,j)).join('')}`;
+  return el;
+}
+function itemHTML(i,j){
+  const it=S.plan[i].items[j];
+  const kind = it.lab ? it.lab : it.k==='food' ? (it.t==='12:30'?'🍽️ Lunch':'🍷 Dinner') : (it.t==='08:30'?'🌅 Morning':it.t==='15:00'?'☀️ Afternoon':'🌙 Evening');
+  return `<div class="item" data-i="${i}" data-j="${j}"><div class="t">${it.t}</div>
+    <div class="txt"><span class="k">${kind}</span>${esc(it.txt)}${it.tag?`<span class="tag">${it.tag}</span>`:''}<div class="cost">${it.cost?'≈ '+money(it.cost)+' · yours free':'Free (actually free)'}</div></div>
+    <div class="acts"><button class="mini ${it.liked?'liked':''}" data-a="like" aria-label="Love it">${it.liked?'❤️':'🤍'}</button>${it.xid?`<button class="mini" data-a="rm" aria-label="Remove">✕</button>`:`<button class="mini" data-a="swap" aria-label="Swap this">🔄</button>`}</div></div>`;
+}
+$('#itin').addEventListener('click', e => {
+  const b = e.target.closest('.mini'); if(!b) return;
+  const row = b.closest('.item'), i=+row.dataset.i, j=+row.dataset.j, it=S.plan[i].items[j];
+  if (b.dataset.a==='like'){
+    it.liked=!it.liked; b.classList.toggle('liked', it.liked); b.textContent = it.liked?'❤️':'🤍';
+    if (it.liked){ tap(990); floater(b,'+1 ❤️'); addHype(6, b); } else tap(330);
+  } else if (b.dataset.a==='rm'){
+    S.plan[i].items.splice(j,1); delete S.added[it.xid]; S.exc=S.exc.filter(x=>x.id!==it.xid);
+    const n=dayEl(i); n.style.animation='none'; row.closest('.day').replaceWith(n);
+    tap(300); renderTabs(); renderExc(); toast('Removed. Plenty more where that came from.');
+  } else {
+    S.plan[i].items[j] = makeItem(it.k, it.t);
+    const tmp=document.createElement('div'); tmp.innerHTML=itemHTML(i,j); const n=tmp.firstElementChild;
+    n.classList.add('swap'); row.replaceWith(n); tap(620); addHype(4, n.querySelector('[data-a=swap]'));
+  }
+  updateTotals();
+});
+function totals(){
+  const acts = S.plan.flatMap(d=>d.items).reduce((s,i)=>s+i.cost,0);
+  const extras = [...S.extras].reduce((s,k)=>s+(EXTRAS.find(e=>e.k===k)?.p||0),0);
+  return { flight:S.flight.price, hotel:S.hotel.nightly*Math.max(1,S.days-1), acts, extras, all:S.flight.price + S.hotel.nightly*Math.max(1,S.days-1) + acts + extras };
+}
+function renderAside(){
+  const f=S.flight, h=S.hotel, d=S.dest;
+  $('#aside').innerHTML = `
+  <div class="card" style="animation:fadeUp .4s both"><div class="hd"><span>✈️ Flight · ${f.cab}</span><span>${esc(f.air)}</span></div>
+    <div class="route"><span>HOME</span><span class="line"></span><span>${esc(d.code)}</span></div>
+    <div style="display:flex;justify-content:space-between;color:var(--muted);font-size:14px;margin-top:6px"><span>Departs ${f.out}</span><span>${f.dur} · nonstop</span></div>
+    <div class="price"><b id="fprice">${money(f.price)}</b><s>${money(f.was)}</s></div>
+    <div class="live" id="watch">👀 ${f.watching} people are looking at this flight</div></div>
+  <div class="card" style="animation:fadeUp .4s .1s both"><div class="hd"><span>🏨 Stay · ${Math.max(1,S.days-1)} nights</span><span class="stars">${'★'.repeat(h.stars)}</span></div>
+    <div class="hotel"><div class="ph">${d.emoji}</div><div><b>${esc(h.name)}</b><div style="color:var(--muted);font-size:14px;margin-top:2px">${money(h.nightly)}/night · ${h.rating} "Exceptional"</div><div style="color:var(--good);font-size:13px;font-weight:600;margin-top:2px">✓ Free upgrade applied</div></div></div></div>
+  <div class="card" id="exc-card" style="display:none"></div>
+  <div class="card total" style="animation:fadeUp .4s .2s both"><div class="hd"><span>Trip value</span><span>💸</span></div><div id="tot"></div>
+    <button class="go" id="to-book">Lock it in →</button></div>`;
+  updateTotals();
+  $('#to-book').onclick = () => { tap(880); renderBook(); show('book'); };
+}
+function updateTotals(){
+  const t=totals(), el=$('#tot'); if(!el) return;
+  el.innerHTML = `<div class="l"><span>Flight</span><span>${money(t.flight)}</span></div><div class="l"><span>Hotel</span><span>${money(t.hotel)}</span></div>
+    <div class="l"><span>Tours, activities & food</span><span>${money(t.acts)}</span></div>${t.extras?`<div class="l"><span>Extras</span><span>${money(t.extras)}</span></div>`:''}
+    <div class="l pay"><span>You pay</span><span>$0.00</span></div><div style="font-size:13px;opacity:.7;margin-top:4px">You save ${money(t.all)}. Every time.</div>`;
+}
+function startLive(){
+  clearTimers();
+  S.timers.push(setInterval(()=>{
+    if (S.flight.price < S.flight.was*.55) return;
+    const drop = ri(6,38); S.flight.price -= drop;
+    const p=$('#fprice'); if(!p) return; p.textContent=money(S.flight.price); p.classList.remove('drop'); void p.offsetWidth; p.classList.add('drop');
+    updateTotals(); blip(1200,.06); if (Math.random()<.5) toast(`🔻 Price just dropped ${money(drop)}!`);
+  }, 5200));
+  S.timers.push(setInterval(()=>{ const w=$('#watch'); if(!w) return; S.flight.watching=Math.max(2,S.flight.watching+ri(-2,3));
+    w.textContent = Math.random()<.3 ? `⚡ Only ${ri(2,4)} seats left at this price` : `👀 ${S.flight.watching} people are looking at this flight`; }, 3400));
+}
+function setHype(v){ S.hype=Math.min(100,v); $('#hype').style.width=S.hype+'%'; $('#hype-pct').textContent=S.hype+'%'; }
+function addHype(n, el){
+  const before=S.hype; setHype(S.hype+n);
+  if (before<100 && S.hype>=100){ chord(); confetti(120, el||$('#hype')); toast("🔥 HYPE MAXED. You are SO ready for this trip."); }
+}
+
+/* ---------- explore: attractions, sightseeing, tours, gems, private 1:1 ---------- */
+function buildExplore(){
+  const d=S.dest, e=expFor(d), m=TIERS[S.tier].m, city=d.name.split(',')[0];
+  const rating=(lo=4.7)=>(lo+Math.random()*(4.99-lo)).toFixed(2);
+  const fill=s=>{ const A=shuffle(e.attr), G=rnd(e.gems), Sg=rnd(e.sight);
+    return s.replaceAll('{a}',A[0][0]).replaceAll('{b}',A[1][0]).replaceAll('{s}',Sg[0]).replaceAll('{g}',G[0]).replaceAll('{city}',city); };
+  const place=(cat,emoji,list,o={})=>list.map(([title,desc],i)=>({id:cat+i,cat,emoji:Array.isArray(emoji)?emoji[i%emoji.length]:emoji,title,desc,
+    rating:rating(o.lo),reviews:ri(...(o.rev||[900,26000])),dur:o.dur?rnd(o.dur):`${ri(1,3)}h`,price:Math.round(ri(...(o.p||[0,35]))*m/5)*5,badge:o.badge?o.badge(i):''}));
+  S.explore = {
+    attr: place('attr',['🏛️','🏰','⛪','🗿'],e.attr,{badge:i=>i===0?`🏆 #1 in ${city}`:i===1?'📸 Most photographed':'',p:[10,40]}),
+    sight: place('sight',['🌄','🚶','🌆'],e.sight,{badge:i=>i===0?'🌅 Best at sunset':'',p:[0,0],dur:['1h','2h','90 min']}),
+    gems: place('gems',['🤫','🗝️','🌿'],e.gems,{badge:()=> '💎 Hidden gem',rev:[18,420],lo:4.85,p:[0,20]}),
+    tours: shuffle(TOURS).slice(0,5).map((t,i)=>({id:'tours'+i,cat:'tours',emoji:t[2],title:fill(t[0]),desc:t[4],dur:t[1],badge:t[3],
+      rating:rating(4.85),reviews:ri(1200,24000),price:Math.round(ri(45,140)*m/5)*5,group:`Small group · max ${ri(6,12)}`})),
+    priv: PRIV.map((t,i)=>({id:'priv'+i,cat:'priv',emoji:t[2],title:fill(t[0]),desc:t[3],dur:t[1],badge:i<2?'👑 Most booked 1:1':'✨ Private',
+      rating:rating(4.9),reviews:ri(80,1400),price:Math.round(ri(180,520)*m/5)*5,group:'Private · just you + guide'})),
+  };
+  const avs=['🧑🏽','👩🏻','🧔🏾','👩🏽','🧑🏻','👨🏼'], langs=['Spanish','French','German','Japanese','Italian','Mandarin','Portuguese','Arabic','Hindi'];
+  const specs=['Former archaeologist','Born & raised here','Food obsessive','Pro photographer','History PhD','Mountain guide','Ex-chef'];
+  S.guides = e.guides.map((n,i)=>({n, av:avs[(i*2+ri(0,1))%avs.length], langs:['English',...shuffle(langs).slice(0,ri(1,2))].join(', '), rating:rating(4.92), tours:ri(300,2800), spec:shuffle(specs)[i]}));
+}
+function renderTabs(){
+  $('#tabs').innerHTML = CATS.map(c=>`<button class="tab ${S.tab===c.k?'on':''}" data-t="${c.k}">${c.l}${c.k==='priv'&&S.exc.length?`<span class="badge">${S.exc.length}</span>`:''}</button>`).join('');
+}
+$('#tabs').addEventListener('click', e=>{
+  const b=e.target.closest('.tab'); if(!b) return; S.tab=b.dataset.t; renderTabs(); showTab(); tap(650);
+  const on=$('#tabs .tab.on'), tb=$('#tabs'); tb.scrollTo({left:on.offsetLeft-tb.clientWidth/2+on.offsetWidth/2,behavior:'smooth'});
+});
+function showTab(){
+  const it=S.tab==='itin'; $('#itin').style.display=it?'':'none'; $('#explore').style.display=it?'none':'';
+  if(!it) renderExplore();
+  const top=$('#tabs').getBoundingClientRect().top; if (top<60) window.scrollBy({top:top-70,behavior:'smooth'});
+}
+function renderExplore(){
+  $('#explore').innerHTML = `<p class="intro">${INTRO[S.tab]}</p><div class="xgrid">${S.explore[S.tab].map(xCard).join('')}</div>`;
+}
+function xCard(x,i){
+  const booked=S.exc.find(e=>e.id===x.id), day=S.added[x.id];
+  const bookable = x.cat==='tours'||x.cat==='priv';
+  const btn = bookable
+    ? (booked?`<button class="xbtn done">✓ Booked · Day ${booked.day+1}</button>`:`<button class="xbtn ${x.cat==='priv'?'gold':''}" data-x="${x.id}">${x.cat==='priv'?'Book 1:1':'Book tour'}</button>`)
+    : (day!=null?`<button class="xbtn done">✓ On Day ${day+1}</button>`:`<button class="xbtn" data-x="${x.id}">+ Add to trip</button>`);
+  return `<div class="xcard" style="animation-delay:${i*.05}s"><div class="xph"><span>${x.emoji}</span>${x.badge?`<em>${x.badge}</em>`:''}</div>
+    <div class="xb"><b>${esc(x.title)}</b><p>${esc(x.desc)}</p>
+    <div class="xm"><span>⭐ ${x.rating} (${x.reviews.toLocaleString('en-US')})</span><span>⏱ ${x.dur}</span>${x.group?`<span>👤 ${x.group}</span>`:''}</div>
+    <div class="xf"><span class="xp">${x.price?money(x.price):'Free'}${x.price?'<small> · you pay $0</small>':''}</span>${btn}</div></div></div>`;
+}
+const findX = id => Object.values(S.explore).flat().find(x=>x.id===id);
+$('#explore').addEventListener('click', e=>{
+  const b=e.target.closest('.xbtn[data-x]'); if(!b) return; const x=findX(b.dataset.x);
+  if (x.cat==='tours'||x.cat==='priv') openSheet(x); else addSight(x,b);
+});
+function insertItem(day,item){
+  S.plan[day].items.push(item); S.plan[day].items.sort((a,b)=>a.t.localeCompare(b.t));
+  const old=document.querySelector(`.day[data-day="${day}"]`), n=dayEl(day); n.classList.add('flash'); old.replaceWith(n);
+  setTimeout(()=>n.classList.remove('flash'),1400); updateTotals();
+}
+function addSight(x,btn){
+  let day=0, best=1e9; S.plan.forEach((d,i)=>{ const c=d.items.length+(i===0?1:0); if(c<best){best=c;day=i;} });
+  const t = x.cat==='gems' ? rnd(['10:30','16:30']) : x.cat==='sight' ? rnd(['07:00','17:30']) : rnd(['10:00','13:30']);
+  insertItem(day,{k:'x',t,txt:x.title,cost:x.price,tag:x.cat==='gems'?'💎 Hidden gem':x.cat==='attr'?'📍 Must-see':'👀 Great view',liked:false,xid:x.id,
+    lab:x.cat==='gems'?'💎 Hidden gem':x.cat==='attr'?'📍 Attraction':'👀 Sightseeing'});
+  S.added[x.id]=day; tap(900); floater(btn,'+ Day '+(day+1)); addHype(5,btn);
+  toast(`📍 ${x.title} added to Day ${day+1}`); renderExplore();
+}
+
+/* booking sheet */
+let D=null;
+function openSheet(x){
+  const priv=x.cat==='priv';
+  const late=/night|sunset/i.test(x.title);
+  D={x, day:Math.min(1,S.days-1), time:null, guide:priv?0:null, add:new Set(), times:late?['17:30','18:45','20:00','21:15']:priv?['08:00','10:00','13:00','16:00','18:30']:['09:00','11:30','14:00','17:30'],
+     addons:priv?[['🍾','Champagne on arrival',80],['🚐','Hotel pickup in a nice car',45],['🎁','Surprise local souvenir',30]]:[['📸','Photo pack',25],['🚐','Hotel pickup',15]]};
+  D.full = new Set(shuffle(D.times).slice(0,1));
+  D.time = D.times.find(t=>!D.full.has(t));
+  renderSheet(); $('#sheet').classList.add('show'); tap(760);
+}
+function sheetPrice(){ return D.x.price + D.addons.filter((a,i)=>D.add.has(i)).reduce((s,a)=>s+Math.round(a[2]*TIERS[S.tier].m),0); }
+function renderSheet(){
+  const x=D.x, priv=x.cat==='priv';
+  const incl = priv ? ['✅ Just you and your guide, nobody else','✅ Fully customisable route','✅ Free cancellation (and free everything)','✅ Water, snacks & insider tips'] : ['✅ Expert local guide','✅ Skip-the-line entry','✅ Small group, never a crowd','✅ Free cancellation'];
+  $('#sheet-box').innerHTML = `
+    <div class="xph"><span>${x.emoji}</span>${x.badge?`<em>${x.badge}</em>`:''}<button class="sclose" data-close aria-label="Close">✕</button></div>
+    <div class="sbody">
+      <h3>${esc(x.title)}</h3>
+      <div class="xm" style="margin-top:6px"><span>⭐ ${x.rating} (${x.reviews.toLocaleString('en-US')})</span><span>⏱ ${x.dur}</span><span>👤 ${x.group}</span></div>
+      <ul class="incl">${incl.map(s=>`<li>${s}</li>`).join('')}</ul>
+      <div class="lbl">Which day?</div>
+      <div class="chips">${S.plan.map((d,i)=>`<button class="sc ${D.day===i?'on':''}" data-day="${i}">Day ${i+1} · ${new Date(+S.start+i*864e5).toLocaleDateString('en-US',{weekday:'short'})}</button>`).join('')}</div>
+      <div class="lbl">Start time</div>
+      <div class="chips">${D.times.map(t=>D.full.has(t)?`<button class="sc" disabled style="opacity:.45;text-decoration:line-through">${t} · full</button>`:`<button class="sc ${D.time===t?'on':''}" data-time="${t}">${t}</button>`).join('')}</div>
+      ${priv?`<div class="lbl">Choose your guide</div><div class="guides">${S.guides.map((g,i)=>`<button class="guide ${D.guide===i?'on':''}" data-guide="${i}"><span class="av">${g.av}</span><div><b>${esc(g.n)}</b> <span class="stars">★ ${g.rating}</span><small>${g.spec} · ${g.tours.toLocaleString('en-US')} tours · speaks ${g.langs}</small></div></button>`).join('')}</div>`:''}
+      <div class="lbl">Make it extra</div>
+      <div class="chips">${D.addons.map((a,i)=>`<button class="sc ${D.add.has(i)?'on':''}" data-add="${i}">${a[0]} ${a[1]} · ${money(Math.round(a[2]*TIERS[S.tier].m))}</button>`).join('')}</div>
+      <div class="ssum"><span>Value <s style="color:var(--muted)">${money(sheetPrice())}</s></span><span>You pay <b>$0.00</b></span></div>
+      <button class="cta" id="sheet-go">${priv?`Reserve with ${esc(S.guides[D.guide].n)} ✨`:'Reserve my spot ✨'}</button>
+      <p class="fine">⚡ ${ri(3,11)} people booked this in the last hour</p>
+    </div>`;
+}
+$('#sheet-box').addEventListener('click', e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  if (b.hasAttribute('data-close')) return closeSheet();
+  if (b.id==='sheet-go') return confirmSheet(b);
+  if (b.dataset.day!=null) D.day=+b.dataset.day;
+  else if (b.dataset.time) D.time=b.dataset.time;
+  else if (b.dataset.guide!=null){ D.guide=+b.dataset.guide; toast(`${S.guides[D.guide].av} ${S.guides[D.guide].n} can't wait to meet you.`); }
+  else if (b.dataset.add!=null){ const i=+b.dataset.add; D.add.has(i)?D.add.delete(i):D.add.add(i); }
+  else return;
+  const sc=$('#sheet-box').scrollTop; tap(700); renderSheet(); $('#sheet-box').scrollTop=sc;
+});
+$('#sheet').addEventListener('click', e=>{ if(e.target.id==='sheet') closeSheet(); });
+function closeSheet(){ $('#sheet').classList.remove('show'); }
+function confirmSheet(btn){
+  const x=D.x, priv=x.cat==='priv', g=priv?S.guides[D.guide]:null, price=sheetPrice();
+  const extras=D.addons.filter((a,i)=>D.add.has(i)).map(a=>a[0]).join('');
+  S.exc.push({id:x.id,title:x.title,emoji:x.emoji,day:D.day,time:D.time,guide:g?g.n:null,price,priv});
+  insertItem(D.day,{k:'x',t:D.time,txt:x.title+(g?` with ${g.n}`:'')+(extras?` ${extras}`:''),cost:price,tag:'✅ Confirmed',liked:true,xid:x.id,
+    lab:priv?'🤝 Private 1:1 · booked':'🎟️ Tour · booked'});
+  confetti(140,btn); chord(); buzz(40); closeSheet();
+  toast(priv?`🤝 Booked! ${g.n} will meet you on Day ${D.day+1} at ${D.time}.`:`🎟️ Booked for Day ${D.day+1} at ${D.time}!`);
+  addHype(12,null); renderTabs(); renderExplore(); renderExc();
+}
+function renderExc(){
+  const el=$('#exc-card'); if(!el) return;
+  if (!S.exc.length){ el.style.display='none'; return; }
+  el.style.display='';
+  el.innerHTML = `<div class="hd"><span>🎟️ Your excursions</span><span>${S.exc.length}</span></div>`+
+    S.exc.slice().sort((a,b)=>a.day-b.day||a.time.localeCompare(b.time)).map(x=>`<div class="excl"><span style="font-size:22px">${x.emoji}</span><div><b>${esc(x.title)}</b><small>Day ${x.day+1} · ${x.time}${x.guide?` · with ${esc(x.guide)}`:''}</small></div></div>`).join('');
+}
+
+/* ---------- booking ---------- */
+const EXTRAS = [
+  {k:"lounge",e:"🥂",n:"Airport lounge access",s:"Unlimited croissants",p:65},
+  {k:"transfer",e:"🚘",n:"Private driver at arrivals",s:"Holding a sign with your name",p:90},
+  {k:"upgrade",e:"👑",n:"Upgrade to First Class",s:"It's free, because none of this is real",p:2400},
+  {k:"insurance",e:"🛡️",n:"Reality insurance",s:"Covers sudden urges to actually go",p:0},
+];
+function renderBook(){
+  const rows=10, letters="ABCDEF"; let h='';
+  for (let r=1;r<=rows;r++){
+    for (let c=0;c<6;c++){
+      if (c===3) h+=`<div class="aisle">${r}</div>`;
+      const id=r+letters[c], taken = Math.random()<.42 && id!=='1A';
+      h+=`<button class="seat ${r<=2?'first':''} ${taken?'taken':''}" data-s="${id}" ${taken?'disabled':''} aria-label="Seat ${id}">${letters[c]}</button>`;
+    }
+  }
+  $('#seats').innerHTML=h;
+  $('#extras').innerHTML = EXTRAS.map(x=>`<button class="extra ${S.extras.has(x.k)?'on':''}" data-k="${x.k}"><span class="e">${x.e}</span><div><b>${x.n}</b><small>${x.s} · ${x.p?money(x.p)+' value':'priceless'}</small></div><span class="sw"></span></button>`).join('');
+  updateHold();
+}
+$('#seats').addEventListener('click', e => {
+  const b=e.target.closest('.seat'); if(!b||b.disabled) return;
+  document.querySelectorAll('.seat.on').forEach(s=>s.classList.remove('on'));
+  b.classList.add('on'); S.seat=b.dataset.s; tap(780);
+  if (S.seat.startsWith('1')||S.seat.startsWith('2')) toast(`👑 Seat ${S.seat}, first class. Champagne on boarding.`);
+  else if (/[AF]$/.test(S.seat)) toast(`🪟 Window seat ${S.seat}. Great view of nothing, forever.`);
+  updateHold();
+});
+$('#extras').addEventListener('click', e => {
+  const b=e.target.closest('.extra'); if(!b) return; const k=b.dataset.k;
+  S.extras.has(k)?S.extras.delete(k):S.extras.add(k); b.classList.toggle('on'); tap(S.extras.has(k)?900:400);
+  if (S.extras.has(k)) floater(b.querySelector('.sw'),'✓');
+});
+function updateHold(){ const h=$('#hold'); h.disabled=!S.seat; $('#hold-txt').textContent = S.seat ? `Hold to book seat ${S.seat} ✈️` : 'Pick a seat first'; }
+(function holdBtn(){
+  const btn=$('#hold'), fill=btn.querySelector('i'); let t0=0, raf, lastTick=0;
+  const DUR=1300;
+  const stop=()=>{ cancelAnimationFrame(raf); fill.style.width='0'; t0=0; };
+  const step=now=>{ const p=Math.min(1,(now-t0)/DUR); fill.style.width=(p*100)+'%';
+    if (now-lastTick>90){ blip(300+p*900,.04,'sine',.04); buzz(5); lastTick=now; }
+    if (p>=1){ stop(); book(); return; } raf=requestAnimationFrame(step); };
+  btn.addEventListener('pointerdown', e=>{ if(btn.disabled) return; e.preventDefault(); t0=performance.now(); raf=requestAnimationFrame(step); });
+  ['pointerup','pointerleave','pointercancel'].forEach(ev=>btn.addEventListener(ev, ()=>{ if(t0) stop(); }));
+  btn.addEventListener('keydown', e=>{ if((e.key==='Enter'||e.key===' ')&&!btn.disabled){ e.preventDefault(); book(); } });
+})();
+function book(){
+  const d=S.dest, t=totals(), gate=rnd("ABCDE")+ri(1,40);
+  profile.trips++; profile.saved+=t.all; profile.exc=(profile.exc||0)+S.exc.length;
+  profile.stamps.push({ name:d.name.split(',')[0], code:d.code, date:fmtDate(S.start), color:d.c[0], rot:ri(-18,18) });
+  store.set('fw_profile', profile); renderHeader();
+  const seatCab = S.extras.has('upgrade') || /^[12][A-F]$/.test(S.seat) ? 'First' : S.flight.cab;
+  $('#modal-box').innerHTML = `
+    <div class="yay"><h2>You're going! 🎉</h2><p>(Not really. But doesn't it feel nice?)</p></div>
+    <div class="pass">
+      <div class="top"><span>🧳 ${esc(S.flight.air)}</span><span>${seatCab.toUpperCase()}</span></div>
+      <div class="codes"><div><small>From</small><b>HOME</b><small>Your couch</small></div><div style="font-size:28px">✈️</div><div style="text-align:right"><small>To</small><b>${esc(d.code)}</b><small>${esc(d.name)}</small></div></div>
+      <div class="info"><div><small>Date</small><b>${fmtDate(S.start)}</b></div><div><small>Seat</small><b>${S.seat}</b></div><div><small>Gate</small><b>${gate}</b></div>
+        <div><small>Boards</small><b>Never ✨</b></div><div><small>Days</small><b>${S.days}</b></div><div><small>Paid</small><b>$0.00</b></div></div>
+      <div class="tear"></div><div class="barcode"></div>
+      <div class="foot">Booking ref ${Math.random().toString(36).slice(2,8).toUpperCase()} · Passport stamped 🛂</div>
+    </div>
+    <div class="saved"><div><b>${money(t.all)}</b><small>not spent</small></div><div><b>${profile.trips}</b><small>trips planned</small></div><div><b>0 kg</b><small>CO₂ emitted</small></div></div>
+    ${S.exc.length?`<div class="excpass"><b>🎟️ ${S.exc.length} excursion${S.exc.length>1?'s':''} confirmed</b>${S.exc.slice().sort((a,b)=>a.day-b.day||a.time.localeCompare(b.time)).map(x=>`<div>${x.emoji} Day ${x.day+1}, ${x.time}: ${esc(x.title)}${x.guide?` with ${esc(x.guide)}`:''}</div>`).join('')}</div>`:''}
+    <div class="mbtns"><button id="m-pass">🛂 Passport</button><button class="p" id="m-again">Plan another ✨</button></div>`;
+  $('#modal').classList.add('show'); $('#toast').classList.remove('show');
+  chord(); buzz([30,40,60]); confetti(220);
+  setTimeout(()=>confetti(120), 600);
+  $('#m-again').onclick = ()=>{ $('#modal').classList.remove('show'); $('#dest').value=''; show('home'); tap(700); };
+  $('#m-pass').onclick = ()=>{ $('#modal').classList.remove('show'); show('home'); openPassport(); };
+}
+
+/* ---------- confetti ---------- */
+const cv=$('#confetti'), cx=cv.getContext('2d'); let parts=[], cRaf;
+function sizeCv(){ cv.width=innerWidth*devicePixelRatio; cv.height=innerHeight*devicePixelRatio; cx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0); }
+addEventListener('resize', sizeCv); sizeCv();
+function confetti(n=150, el){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let ox=innerWidth/2, oy=innerHeight/3;
+  if (el){ const r=el.getBoundingClientRect(); ox=r.left+r.width/2; oy=r.top+r.height/2; }
+  const cols=['#ff5a5f','#ffb238','#1fb5a8','#5b7cfa','#8b5cf6','#ffd200'];
+  for (let i=0;i<n;i++){ const a=Math.random()*Math.PI*2, v=4+Math.random()*9;
+    parts.push({x:ox,y:oy,vx:Math.cos(a)*v,vy:Math.sin(a)*v-6,r:4+Math.random()*5,c:rnd(cols),rot:Math.random()*6,vr:(Math.random()-.5)*.4,life:120+Math.random()*60,sh:Math.random()<.3}); }
+  if (!cRaf) cRaf=requestAnimationFrame(tick);
+}
+function tick(){
+  cx.clearRect(0,0,innerWidth,innerHeight);
+  parts=parts.filter(p=>p.life>0 && p.y<innerHeight+40);
+  for (const p of parts){ p.vy+=.28; p.vx*=.985; p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr; p.life--;
+    cx.save(); cx.translate(p.x,p.y); cx.rotate(p.rot); cx.fillStyle=p.c; cx.globalAlpha=Math.min(1,p.life/40);
+    if (p.sh){ cx.beginPath(); cx.arc(0,0,p.r/1.6,0,7); cx.fill(); } else cx.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);
+    cx.restore(); }
+  cRaf = parts.length ? requestAnimationFrame(tick) : null;
+  if (!cRaf) cx.clearRect(0,0,innerWidth,innerHeight);
+}
+
+/* ---------- wiring ---------- */
+$('#home-link').onclick = ()=>{ show('home'); };
+$('#back-home').onclick = ()=>{ show('home'); tap(400); };
+$('#back-plan').onclick = ()=>{ show('plan'); startLive(); tap(400); };
+$('#open-passport').onclick = openPassport;
+$('#close-passport').onclick = closePassport;
+$('#scrim').onclick = closePassport;
+$('#modal').onclick = e => { if (e.target.id==='modal'){ $('#modal').classList.remove('show'); show('home'); } };
+const muteBtn=$('#mute'); const setMute=()=>{ muteBtn.textContent = muted?'🔇':'🔊'; };
+muteBtn.onclick = ()=>{ muted=!muted; store.set('fw_muted',muted); setMute(); if(!muted) blip(880); };
+addEventListener('keydown', e=>{ if(e.key==='Escape'){ closePassport(); } });
+setMute(); renderHeader(); initHome();
+</script>
+</body>
+</html>
