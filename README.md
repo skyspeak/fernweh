@@ -12,6 +12,7 @@ A "dopamine website" for travel: all the thrill of planning a trip, with none of
 - **Book tours**: pick a day and time, choose your private guide, add extras. It all costs $0.00.
 - **Feel the urgency**: flight prices keep dropping and "14 people are looking at this flight".
 - **"Book" the trip**: choose a seat, hold to confirm, get confetti, a boarding pass that boards *never*, and a passport stamp.
+- **Confirmation page**: after booking, see every confirmed item (flight, hotel, tours, extras, each day's plan) and send it as a web page by link, email, text, WhatsApp or the share sheet, or save it as a PDF.
 - **Passport**: tracks trips planned, money not spent and excursions booked.
 
 All 11 destinations are parody versions of real places (Kyotoast, Lisbonbon, Reykjaview, Santorinny, Pantsagonia…). Typing the real name, like "Kyoto", takes you to its lookalike. Any other place you type gets a general plan with that name.
@@ -20,6 +21,7 @@ All 11 destinations are parody versions of real places (Kyotoast, Lisbonbon, Rey
 
 - One self-contained file: [`index.html`](index.html). No build step, no dependencies, no backend. The only external request is Google Fonts.
 - The "AI" is simulated: plans are put together from hand-written content in the page, so it's instant, free and works offline.
+- Shared itinerary links carry the whole trip inside the link itself (compressed into the `#trip=` part of the URL), so nothing is stored on a server. Anything read from a link is escaped before it's shown.
 - Progress (passport stamps, totals, mute setting) is saved in your browser's `localStorage` and never leaves your device.
 - Mobile-first layout, dark mode, sound effects (🔊 to mute), phone vibration and `prefers-reduced-motion` support.
 

@@ -252,7 +252,7 @@ h1 em{font-style:normal;background:linear-gradient(90deg,var(--hot),var(--sun),v
 .pass .info small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em}
 .pass .info b{font-size:17px}
 .tear{border-top:2px dashed var(--line);margin:0 14px;position:relative}
-.tear::before,.tear::after{content:"";position:absolute;top:-12px;width:22px;height:22px;border-radius:50%;background:rgba(20,10,30,.55)}
+.tear::before,.tear::after{content:"";position:absolute;top:-12px;width:22px;height:22px;border-radius:50%;background:var(--bg)}
 .tear::before{left:-26px}.tear::after{right:-26px}
 .barcode{height:56px;margin:16px 20px 6px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 7px,transparent 7px 9px,var(--ink) 9px 10px,transparent 10px 13px)}
 .pass .foot{text-align:center;font-size:13px;color:var(--muted);padding:0 20px 18px}
@@ -263,6 +263,56 @@ h1 em{font-style:normal;background:linear-gradient(90deg,var(--hot),var(--sun),v
 .mbtns{display:flex;gap:10px;margin-top:14px}
 .mbtns button{flex:1;height:54px;border-radius:16px;font-weight:800;font-size:16px;background:#fff;color:#1d1630}
 .mbtns button.p{background:linear-gradient(90deg,var(--hot),var(--sun));color:#fff}
+
+/* CONFIRMATION */
+.conf{max-width:760px;margin:16px auto 60px;display:flex;flex-direction:column;gap:16px}
+.chero{border-radius:28px;padding:24px 22px;color:#fff;background:linear-gradient(135deg,var(--g1),var(--g2));position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.chero .big{position:absolute;right:-6px;bottom:-26px;font-size:130px;opacity:.3;transform:rotate(-12deg)}
+.chero small{font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:13px;opacity:.95}
+.chero h2{font-size:clamp(30px,6vw,46px);line-height:1.02;letter-spacing:-1px;margin:8px 0 6px;position:relative}
+.chero p{opacity:.95;position:relative}
+.okpill{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.25);padding:6px 12px;border-radius:999px}
+.conf .pstats{margin:0}
+.csec{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.csec h3{font-size:20px;letter-spacing:-.3px;margin-bottom:4px}
+.csec .sub2{color:var(--muted);font-size:14px;margin-bottom:10px}
+.crow{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:start;padding:11px 0;border-top:1px dashed var(--line)}
+.crow:first-of-type{border-top:0}
+.crow .ic{font-size:22px;line-height:1.1}
+.crow b{display:block;font-size:15px;line-height:1.3}
+.crow small{display:block;color:var(--muted);font-size:13px;margin-top:2px;line-height:1.35}
+.ok{font-size:12px;font-weight:800;color:var(--good);background:color-mix(in srgb,var(--good) 14%,transparent);padding:4px 8px;border-radius:999px;white-space:nowrap}
+.cday{margin-top:16px}
+.cdh{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;padding-bottom:6px;border-bottom:2px solid var(--line)}
+.cdh .n{font-size:12px;font-weight:800;color:var(--bg);background:var(--ink);padding:3px 8px;border-radius:7px}
+.cdh b{font-size:17px}
+.cdh span:last-child{margin-left:auto;color:var(--muted);font-size:13px}
+.ci{display:grid;grid-template-columns:48px 1fr auto;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:15px;line-height:1.35}
+.ci:last-child{border-bottom:0}
+.ci .t{font-weight:700;color:var(--muted);font-size:13px;padding-top:2px}
+.ci .k{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.ci .ck{color:var(--good);font-weight:800}
+.ctot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:16px;padding:14px;border-radius:14px;background:var(--ink);color:var(--bg);font-weight:700;flex-wrap:wrap}
+.ctot b{color:#5eead4;font-size:20px}
+.csend h3{display:flex;align-items:center;gap:8px}
+.linkrow{display:flex;gap:8px;margin-top:10px}
+.linkrow input{flex:1;min-width:0;height:48px;border-radius:12px;border:2px solid var(--line);background:var(--bg);padding:0 12px;font-size:14px;color:var(--muted)}
+.linkrow button{height:48px;padding:0 16px;border-radius:12px;background:var(--ink);color:var(--bg);font-weight:800;white-space:nowrap}
+.sbtns{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:10px}
+.sbtns a,.sbtns button{display:flex;align-items:center;justify-content:center;gap:6px;height:50px;border-radius:14px;border:2px solid var(--line);background:var(--card);font-weight:700;font-size:15px;color:var(--ink);text-decoration:none}
+.sbtns .pri{background:linear-gradient(90deg,var(--sea),var(--sky));color:#fff;border-color:transparent}
+.sbtns a:active,.sbtns button:active{transform:scale(.96)}
+.conf .mbtns{margin-top:0}
+.conf .mbtns button{background:var(--card);color:var(--ink);border:2px solid var(--line)}
+.conf .mbtns button.p{border:0;color:#fff}
+@media print{
+  header,footer,.csend,.mbtns,#toast,#confetti,.drawer,.scrim{display:none!important}
+  body{background:#fff;color:#111}
+  .screen{display:none!important} #s-confirm{display:block!important;animation:none}
+  .pass,.csec,.chero{box-shadow:none;break-inside:avoid}
+  .cday{break-inside:avoid}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
 
 /* passport */
 .drawer{position:fixed;inset:0 0 0 auto;width:min(420px,100%);background:var(--bg);z-index:60;transform:translateX(100%);transition:transform .35s cubic-bezier(.2,1,.3,1);display:flex;flex-direction:column;box-shadow:-20px 0 40px -20px rgba(0,0,0,.4)}
@@ -375,11 +425,12 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 0 30px}
       </div>
     </div>
   </section>
+  <!-- CONFIRMATION (also the shared-itinerary page) -->
+  <section class="screen" id="s-confirm"><div class="conf" id="conf"></div></section>
   <footer>Trip Planner: plan the trip, skip the airport. Nothing on this site is real, and that's the point. 💛</footer>
 </main>
 
 <!-- booked modal -->
-<div class="modal" id="modal"><div class="box" id="modal-box"></div></div>
 <!-- tour booking sheet -->
 <div class="modal sheet" id="sheet"><div class="box sbox" id="sheet-box" role="dialog" aria-label="Book a tour"></div></div>
 
@@ -620,6 +671,7 @@ function show(id){
   $('#s-'+id).classList.add('active');
   window.scrollTo({top:0,behavior:'instant'});
   if (id!=='plan') clearTimers();
+  if (id!=='confirm') clearHash();
 }
 function clearTimers(){ S.timers.forEach(clearInterval); S.timers=[]; }
 
@@ -721,7 +773,7 @@ function dayEl(i){
 }
 function itemHTML(i,j){
   const it=S.plan[i].items[j];
-  const kind = it.lab ? it.lab : it.k==='food' ? (it.t==='12:30'?'🍽️ Lunch':'🍷 Dinner') : (it.t==='08:30'?'🌅 Morning':it.t==='15:00'?'☀️ Afternoon':'🌙 Evening');
+  const kind = kindOf(it);
   return `<div class="item" data-i="${i}" data-j="${j}"><div class="t">${it.t}</div>
     <div class="txt"><span class="k">${kind}</span>${esc(it.txt)}${it.tag?`<span class="tag">${it.tag}</span>`:''}<div class="cost">${it.cost?'≈ '+money(it.cost)+' · yours free':'Free (actually free)'}</div></div>
     <div class="acts"><button class="mini ${it.liked?'liked':''}" data-a="like" aria-label="Love it">${it.liked?'❤️':'🤍'}</button>${it.xid?`<button class="mini" data-a="rm" aria-label="Remove">✕</button>`:`<button class="mini" data-a="swap" aria-label="Swap this">🔄</button>`}</div></div>`;
@@ -962,31 +1014,122 @@ function updateHold(){ const h=$('#hold'); h.disabled=!S.seat; $('#hold-txt').te
   ['pointerup','pointerleave','pointercancel'].forEach(ev=>btn.addEventListener(ev, ()=>{ if(t0) stop(); }));
   btn.addEventListener('keydown', e=>{ if((e.key==='Enter'||e.key===' ')&&!btn.disabled){ e.preventDefault(); book(); } });
 })();
+function kindOf(it){
+  return it.lab ? it.lab : it.k==='food' ? (it.t==='12:30'?'🍽️ Lunch':'🍷 Dinner') : (it.t==='08:30'?'🌅 Morning':it.t==='15:00'?'☀️ Afternoon':'🌙 Evening');
+}
+
+/* a self-contained copy of the booked trip: it drives the confirmation page and the share link */
+function snapshot(){
+  const d=S.dest, t=totals(), nights=Math.max(1,S.days-1);
+  const cab = S.extras.has('upgrade') || /^[12][A-F]$/.test(S.seat) ? 'First' : S.flight.cab;
+  return { v:1, ref:Math.random().toString(36).slice(2,8).toUpperCase(), gate:rnd("ABCDE")+ri(1,40),
+    d:{n:d.name,co:d.country,code:d.code,e:d.emoji,c:d.c}, days:S.days, start:S.start.toISOString().slice(0,10), tier:TIERS[S.tier].n,
+    seat:S.seat, cab, f:{a:S.flight.air,o:S.flight.out,du:S.flight.dur,p:S.flight.price},
+    h:{n:S.hotel.name,pn:S.hotel.nightly,s:S.hotel.stars,r:S.hotel.rating,ni:nights},
+    x:[...S.extras].map(k=>EXTRAS.find(e=>e.k===k)).filter(Boolean).map(e=>e.e+' '+e.n),
+    ex:S.exc.map(e=>({t:e.title,e:e.emoji,d:e.day,tm:e.time,g:e.guide||'',pv:e.priv?1:0})),
+    p:S.plan.map(day=>({ti:day.title,i:day.items.map(it=>({t:it.t,k:kindOf(it),x:it.txt,c:it.cost,g:it.tag||''}))})),
+    tot:t.all };
+}
 function book(){
-  const d=S.dest, t=totals(), gate=rnd("ABCDE")+ri(1,40);
-  profile.trips++; profile.saved+=t.all; profile.exc=(profile.exc||0)+S.exc.length;
+  const T=snapshot(), d=S.dest;
+  profile.trips++; profile.saved+=T.tot; profile.exc=(profile.exc||0)+S.exc.length;
   profile.stamps.push({ name:d.name.split(',')[0], code:d.code, date:fmtDate(S.start), color:d.c[0], rot:ri(-18,18) });
   store.set('fw_profile', profile); renderHeader();
-  const seatCab = S.extras.has('upgrade') || /^[12][A-F]$/.test(S.seat) ? 'First' : S.flight.cab;
-  $('#modal-box').innerHTML = `
-    <div class="yay"><h2>You're going! 🎉</h2><p>(Not really. But doesn't it feel nice?)</p></div>
-    <div class="pass">
-      <div class="top"><span>🧳 ${esc(S.flight.air)}</span><span>${seatCab.toUpperCase()}</span></div>
-      <div class="codes"><div><small>From</small><b>HOME</b><small>Your couch</small></div><div style="font-size:28px">✈️</div><div style="text-align:right"><small>To</small><b>${esc(d.code)}</b><small>${esc(d.name)}</small></div></div>
-      <div class="info"><div><small>Date</small><b>${fmtDate(S.start)}</b></div><div><small>Seat</small><b>${S.seat}</b></div><div><small>Gate</small><b>${gate}</b></div>
-        <div><small>Boards</small><b>Never ✨</b></div><div><small>Days</small><b>${S.days}</b></div><div><small>Paid</small><b>$0.00</b></div></div>
-      <div class="tear"></div><div class="barcode"></div>
-      <div class="foot">Booking ref ${Math.random().toString(36).slice(2,8).toUpperCase()} · Passport stamped 🛂</div>
-    </div>
-    <div class="saved"><div><b>${money(t.all)}</b><small>not spent</small></div><div><b>${profile.trips}</b><small>trips planned</small></div><div><b>0 kg</b><small>CO₂ emitted</small></div></div>
-    ${S.exc.length?`<div class="excpass"><b>🎟️ ${S.exc.length} excursion${S.exc.length>1?'s':''} confirmed</b>${S.exc.slice().sort((a,b)=>a.day-b.day||a.time.localeCompare(b.time)).map(x=>`<div>${x.emoji} Day ${x.day+1}, ${x.time}: ${esc(x.title)}${x.guide?` with ${esc(x.guide)}`:''}</div>`).join('')}</div>`:''}
-    <div class="mbtns"><button id="m-pass">🛂 Passport</button><button class="p" id="m-again">Plan another ✨</button></div>`;
-  $('#modal').classList.add('show'); $('#toast').classList.remove('show');
-  chord(); buzz([30,40,60]); confetti(220);
-  setTimeout(()=>confetti(120), 600);
-  $('#m-again').onclick = ()=>{ $('#modal').classList.remove('show'); $('#dest').value=''; show('home'); tap(700); };
-  $('#m-pass').onclick = ()=>{ $('#modal').classList.remove('show'); show('home'); openPassport(); };
+  $('#toast').classList.remove('show');
+  showConfirm(T,false);
+  chord(); buzz([30,40,60]); confetti(220); setTimeout(()=>confetti(120), 600);
 }
+
+/* share links: the whole itinerary lives in the URL hash, compressed. Nothing is sent to a server. */
+const b64u = bytes => { let s=''; bytes.forEach(b=>s+=String.fromCharCode(b)); return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''); };
+const unb64u = str => { const s=atob(str.replace(/-/g,'+').replace(/_/g,'/')); return Uint8Array.from(s,c=>c.charCodeAt(0)); };
+async function packTrip(T){
+  const json=JSON.stringify(T);
+  try{
+    const stream=new Blob([json]).stream().pipeThrough(new CompressionStream('deflate-raw'));
+    return 'z'+b64u(new Uint8Array(await new Response(stream).arrayBuffer()));
+  }catch{ return 'j'+b64u(new TextEncoder().encode(json)); }
+}
+async function unpackTrip(p){
+  const bytes=unb64u(p.slice(1));
+  if (p[0]==='z'){ const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate-raw')); return JSON.parse(await new Response(stream).text()); }
+  return JSON.parse(new TextDecoder().decode(bytes));
+}
+const baseURL = () => location.href.split('#')[0];
+
+/* Render the confirmation page. Shared links are untrusted input, so every value is escaped or coerced. */
+async function showConfirm(T, shared){
+  const N=v=>Math.max(0,Number(v)||0), str=v=>esc(String(v??'').slice(0,160)), arr=v=>Array.isArray(v)?v:[];
+  const D=T.d||{}, cols=arr(D.c).filter(c=>/^#[0-9a-f]{6}$/i.test(c));
+  if (cols.length===2){ document.documentElement.style.setProperty('--g1',cols[0]); document.documentElement.style.setProperty('--g2',cols[1]); }
+  const start=new Date((/^\d{4}-\d\d-\d\d$/.test(T.start)?T.start:'2027-01-01')+'T12:00:00');
+  const dayDt=i=>new Date(+start+i*864e5), days=Math.min(30,N(T.days)||1);
+  const F=T.f||{}, H=T.h||{}, ex=arr(T.ex).slice().sort((a,b)=>N(a.d)-N(b.d)||String(a.tm).localeCompare(String(b.tm)));
+  const plan=arr(T.p).slice(0,30), nItems=plan.reduce((s,d)=>s+arr(d.i).length,0);
+  const end=fmtDate(dayDt(days-1));
+  $('#conf').innerHTML = `
+    <div class="chero"><div class="big">${str(D.e)}</div>
+      <small>${shared?'📬 A trip was shared with you':`<span class="okpill">✅ Booking confirmed · Ref ${str(T.ref)}</span>`}</small>
+      <h2>${shared?`${days} days in ${str(D.n)}`:"You're going! 🎉"}</h2>
+      <p>${shared?'Someone planned every detail of this trip and isn\'t going. Classic. Here\'s their confirmed itinerary.':`${days} days in ${str(D.n)}, ${str(D.co)}. (Not really. But doesn't it feel nice?)`}</p>
+    </div>
+    <div class="pass">
+      <div class="top"><span>🧳 ${str(F.a)}</span><span>${str(T.cab).toUpperCase()}</span></div>
+      <div class="codes"><div><small>From</small><b>HOME</b><small>Your couch</small></div><div style="font-size:28px">✈️</div><div style="text-align:right"><small>To</small><b>${str(D.code)}</b><small>${str(D.n)}</small></div></div>
+      <div class="info"><div><small>Date</small><b>${fmtDate(start)}</b></div><div><small>Seat</small><b>${str(T.seat)}</b></div><div><small>Gate</small><b>${str(T.gate)}</b></div>
+        <div><small>Boards</small><b>Never ✨</b></div><div><small>Days</small><b>${days}</b></div><div><small>Paid</small><b>$0.00</b></div></div>
+      <div class="tear"></div><div class="barcode"></div>
+      <div class="foot">Booking ref ${str(T.ref)}${shared?'':' · Passport stamped 🛂'}</div>
+    </div>
+    <div class="pstats"><div><b>${money(N(T.tot))}</b><small>not spent</small></div><div><b>${nItems}</b><small>plans confirmed</small></div><div><b>0 kg</b><small>CO₂ emitted</small></div></div>
+
+    <div class="csec">
+      <h3>📋 Confirmed itinerary</h3>
+      <p class="sub2">${fmtDate(start)} – ${end} · ${str(T.tier)} · everything below is booked and paid ($0.00)</p>
+      <div class="crow"><span class="ic">✈️</span><div><b>${str(F.a)}: HOME → ${str(D.code)}</b><small>${fmtDate(start)} · departs ${str(F.o)} · ${str(F.du)} nonstop · seat ${str(T.seat)}, ${str(T.cab)}</small></div><span class="ok">✓ Confirmed</span></div>
+      <div class="crow"><span class="ic">🏨</span><div><b>${str(H.n)}</b><small>${N(H.ni)} night${N(H.ni)===1?'':'s'} · ${'★'.repeat(Math.min(5,N(H.s)))} · ${str(H.r)} "Exceptional" · ${money(N(H.pn))}/night value</small></div><span class="ok">✓ Confirmed</span></div>
+      ${ex.map(e=>`<div class="crow"><span class="ic">${str(e.e)}</span><div><b>${str(e.t)}</b><small>${e.pv?'Private 1:1':'Small-group tour'} · Day ${N(e.d)+1}, ${fmtDate(dayDt(N(e.d)))} at ${str(e.tm)}${e.g?` · guide: ${str(e.g)}`:''}</small></div><span class="ok">✓ Booked</span></div>`).join('')}
+      ${arr(T.x).length?`<div class="crow"><span class="ic">✨</span><div><b>Extras</b><small>${arr(T.x).map(str).join(' · ')}</small></div><span class="ok">✓ Added</span></div>`:''}
+      ${plan.map((d,i)=>`<div class="cday"><div class="cdh"><span class="n">DAY ${i+1}</span><b>${str(d.ti)}</b><span>${dayDt(i).toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})}</span></div>
+        ${arr(d.i).map(it=>`<div class="ci"><span class="t">${str(it.t)}</span><div><span class="k">${str(it.k)}</span>${str(it.x)}${it.g?` <span class="tag">${str(it.g)}</span>`:''}</div><span class="ck" aria-label="confirmed">✓</span></div>`).join('')}</div>`).join('')}
+      <div class="ctot"><span>Trip value ${money(N(T.tot))}</span><span>${shared?'They paid':'You paid'} <b>$0.00</b></span></div>
+    </div>
+
+    <div class="csec csend">
+      <h3>📨 ${shared?'Pass it on':'Send your itinerary'}</h3>
+      <p class="sub2">This link opens this exact itinerary as a web page. No sign-up, and nothing is stored on a server: the trip lives inside the link.</p>
+      <div class="linkrow"><input id="clink" readonly value="Making your link…" aria-label="Itinerary link"><button id="ccopy">🔗 Copy</button></div>
+      <div class="sbtns" id="csend-btns"></div>
+    </div>
+    <div class="mbtns">${shared?'':'<button id="c-pass">🛂 Passport</button>'}<button class="p" id="c-again">${shared?'Plan my own trip ✨':'Plan another ✨'}</button></div>`;
+  show('confirm');
+  $('#c-again').onclick = ()=>{ clearHash(); $('#dest').value=''; show('home'); tap(700); };
+  if ($('#c-pass')) $('#c-pass').onclick = openPassport;
+
+  const link = baseURL()+'#trip='+await packTrip(T);
+  const msg = shared ? `Look at this trip to ${D.n} (nobody's going, it's perfect):` : `My trip to ${D.n} is confirmed ✈️ ${days} days, ${nItems} plans, $0.00. (I'm not going.)`;
+  const enc=encodeURIComponent;
+  $('#clink').value = link;
+  $('#ccopy').onclick = async e => { try{ await navigator.clipboard.writeText(link); }catch{ $('#clink').select(); document.execCommand && document.execCommand('copy'); }
+    tap(900); floater(e.currentTarget,'Copied!'); toast('🔗 Link copied. Paste it anywhere.'); };
+  $('#csend-btns').innerHTML =
+    (navigator.share?`<button class="pri" id="cshare">📤 Share</button>`:'')+
+    `<a class="${navigator.share?'':'pri'}" href="mailto:?subject=${enc((shared?'A trip to ':'My confirmed trip to ')+D.n+' ✈️')}&body=${enc(msg+'\n\n'+link)}">✉️ Email</a>`+
+    `<a href="sms:?&body=${enc(msg+' '+link)}">💬 Text</a>`+
+    `<a href="https://wa.me/?text=${enc(msg+' '+link)}" target="_blank" rel="noopener">🟢 WhatsApp</a>`+
+    `<a href="${esc(link)}" target="_blank" rel="noopener">🌐 Open page</a>`+
+    `<button id="cprint">🖨️ Save PDF</button>`;
+  if ($('#cshare')) $('#cshare').onclick = async ()=>{ try{ await navigator.share({title:`Trip to ${D.n}`, text:msg, url:link}); toast('📨 Sent!'); }catch{} };
+  $('#cprint').onclick = ()=>window.print();
+}
+function clearHash(){ if (location.hash) history.replaceState(null,'',location.pathname+location.search); }
+async function openSharedFromHash(){
+  const m=location.hash.match(/^#trip=([A-Za-z0-9_-]+)$/); if(!m) return false;
+  try{ const T=await unpackTrip(m[1]); if(!T||typeof T!=='object'||!T.d) throw 0; showConfirm(T,true); setTimeout(()=>confetti(80),300); return true; }
+  catch{ toast("That trip link looks broken. Plan a fresh one! ✨"); clearHash(); return false; }
+}
+addEventListener('hashchange', openSharedFromHash);
 
 /* ---------- confetti ---------- */
 const cv=$('#confetti'), cx=cv.getContext('2d'); let parts=[], cRaf;
@@ -1019,11 +1162,10 @@ $('#back-plan').onclick = ()=>{ show('plan'); startLive(); tap(400); };
 $('#open-passport').onclick = openPassport;
 $('#close-passport').onclick = closePassport;
 $('#scrim').onclick = closePassport;
-$('#modal').onclick = e => { if (e.target.id==='modal'){ $('#modal').classList.remove('show'); show('home'); } };
 const muteBtn=$('#mute'); const setMute=()=>{ muteBtn.textContent = muted?'🔇':'🔊'; };
 muteBtn.onclick = ()=>{ muted=!muted; store.set('fw_muted',muted); setMute(); if(!muted) blip(880); };
 addEventListener('keydown', e=>{ if(e.key==='Escape'){ closePassport(); } });
-setMute(); renderHeader(); initHome();
+setMute(); renderHeader(); initHome(); openSharedFromHash();
 </script>
 </body>
 </html>
