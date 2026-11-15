@@ -1,10 +1,8 @@
-# 🧳 Fernweh — trips you'll never take
+# 🧳 Trip Planner — trips you'll never take
 
 **Live:** https://skyspeak.github.io/fernweh/
 
 A "dopamine website" for travel: all the thrill of planning a trip, with none of the packing, paying or going. Inspired by South Korea's trend of sites that let you browse delivery menus and fill carts without ever ordering.
-
-> *Fernweh* (German, n.): an ache for distant places.
 
 ## What you can do
 
