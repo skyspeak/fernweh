@@ -36,6 +36,8 @@ header{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 8
 .pill.btn:active{transform:scale(.95)}
 .iconbtn{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--card);border:1px solid var(--line)}
 @media (max-width:520px){.hide-sm{display:none}}
+.logo{white-space:nowrap;flex:none}
+@media (max-width:400px){.logo{font-size:19px;gap:4px}.hstats{gap:4px}.hstats .pill{padding:7px 9px}.iconbtn{width:34px;height:34px}}
 
 .screen{display:none;animation:fadeUp .45s ease both}
 .screen.active{display:block}
@@ -642,7 +644,7 @@ function findDest(q){
 
 /* ---------- header / passport ---------- */
 function renderHeader(){ $('#h-trips').textContent = profile.trips; $('#h-saved').textContent = compact(profile.saved); }
-function compact(n){ return n>=1e6 ? '$'+(n/1e6).toFixed(1)+'M' : n>=1e4 ? '$'+Math.round(n/1000)+'k' : money(n); }
+function compact(n){ return n>=1e6 ? '$'+(n/1e6).toFixed(1)+'M' : n>=1e4 ? '$'+Math.round(n/1000)+'k' : n>=1e3 ? '$'+(n/1000).toFixed(1)+'k' : money(n); }
 function renderPassport(){
   const st = profile.stamps;
   const lev = profile.trips>=20?"Imaginary Jetsetter 🌐":profile.trips>=10?"Frequent Dreamer ✨":profile.trips>=3?"Weekend Wanderer 🧭":"Armchair Explorer 🛋️";
