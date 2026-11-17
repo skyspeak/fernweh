@@ -306,7 +306,7 @@ h1 em{font-style:normal;background:linear-gradient(90deg,var(--hot),var(--sun),v
 .sbtns a:active,.sbtns button:active{transform:scale(.96)}
 .conf .mbtns{margin-top:0}
 .conf .mbtns button{background:var(--card);color:var(--ink);border:2px solid var(--line)}
-.conf .mbtns button.p{border:0;color:#fff}
+.conf .mbtns button.p{border:0;color:#fff;background:linear-gradient(90deg,var(--hot),var(--sun))}
 @media print{
   header,footer,.csend,.mbtns,#toast,#confetti,.drawer,.scrim{display:none!important}
   body{background:#fff;color:#111}
@@ -315,6 +315,68 @@ h1 em{font-style:normal;background:linear-gradient(90deg,var(--hot),var(--sun),v
   .cday{break-inside:avoid}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
+
+/* SEASONS */
+.fx{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.fx i{position:absolute;top:-34px;font-style:normal;animation:fall linear infinite;opacity:.8}
+@keyframes fall{to{transform:translateY(560px) rotate(300deg)}}
+.planner{position:relative;overflow:hidden}
+.planner .fx i{opacity:.35}
+.planner>*:not(.fx),.banner>*:not(.fx):not(.big),.chero>*:not(.fx):not(.big),.gift>*:not(.fx){position:relative;z-index:1}
+.spitch{font-size:14px;color:var(--muted);margin-top:8px}
+.ins{font-style:normal;font-size:11px;font-weight:700;color:var(--hot);margin-left:2px}
+.dyear{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;margin-top:14px;padding:12px 14px;border-radius:16px;border:2px dashed var(--line);background:var(--bg);text-align:left}
+.dyear:hover{border-color:var(--sun)}
+.dyt b{display:block;font-size:15px}
+.dyt small{color:var(--muted);font-size:13px}
+.dys{display:flex;gap:6px;flex:none}
+.dys i{font-style:normal;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--line);font-size:17px;filter:grayscale(1);opacity:.6}
+.dys i.got{background:color-mix(in srgb,var(--sun) 35%,var(--card));filter:none;opacity:1;box-shadow:0 0 0 2px var(--sun)}
+.dyb{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;margin-bottom:16px}
+.dyg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+.dyg div{text-align:center;border-radius:12px;padding:8px 4px;background:var(--bg);opacity:.55}
+.dyg div.got{opacity:1;background:color-mix(in srgb,var(--sun) 20%,var(--card))}
+.dyg span{font-size:24px;display:block}
+.dyg b{display:block;font-size:12px;line-height:1.2;margin:2px 0}
+.dyg small{font-size:10px;color:var(--muted)}
+.cchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.cchips span{background:rgba(255,255,255,.25);padding:5px 10px;border-radius:999px;font-size:13px;font-weight:700}
+
+/* SHARING */
+.lineage{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.lineage>b{font-size:15px}
+.lineage div{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:8px 0 4px}
+.lineage span{background:var(--bg);border:1px solid var(--line);padding:4px 10px;border-radius:999px;font-weight:700;font-size:14px}
+.lineage span.you{border-style:dashed;color:var(--hot)}
+.lineage i{font-style:normal;color:var(--muted)}
+.lineage small{color:var(--muted);font-size:13px}
+.steal{display:flex;align-items:center;gap:12px;padding:16px;border-radius:var(--r);background:var(--ink);color:var(--bg)}
+.steal div{flex:1}
+.steal b{display:block;font-size:17px}
+.steal small{opacity:.75;font-size:13px}
+.steal button{flex:none;height:50px;padding:0 16px;border-radius:14px;background:linear-gradient(90deg,var(--hot),var(--sun));color:#fff;font-weight:800}
+@media (max-width:480px){.steal{flex-direction:column;align-items:stretch}.steal button{width:100%}}
+.reacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:6px}
+.reacts button{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:14px;border:2px solid var(--line);background:var(--bg);font-weight:700;font-size:14px;text-align:left;transition:transform .15s}
+.reacts button span{font-size:24px}
+.reacts button.on{border-color:var(--hot);background:color-mix(in srgb,var(--hot) 12%,var(--card));animation:pop .35s}
+.sopts{display:grid;gap:8px;margin-top:4px}
+.sopts .extra{margin-top:0}
+.nick{display:flex;align-items:center;gap:10px;padding:0 6px 0 14px;border:2px solid var(--line);border-radius:16px;background:var(--card);font-weight:700;font-size:15px}
+.nick span{white-space:nowrap}
+.nick input{flex:1;min-width:0;height:48px;border:0;background:none;outline:none;font-size:16px}
+.gift{position:relative;overflow:hidden;text-align:center;padding:34px 20px 30px;border-radius:28px;color:#fff;background:linear-gradient(135deg,var(--g1),var(--g2));box-shadow:var(--shadow)}
+.gift small{font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:13px}
+.gift h2{font-size:clamp(30px,7vw,46px);line-height:1.05;letter-spacing:-1px;margin:10px 0 6px}
+.gbox{font-size:130px;line-height:1;margin:18px auto 8px;display:block;animation:wobble 2s ease-in-out infinite;filter:drop-shadow(0 16px 20px rgba(0,0,0,.25))}
+.gbox.shake{animation:shake .4s}
+@keyframes wobble{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg) scale(1.04)}}
+@keyframes shake{20%{transform:rotate(-14deg) scale(1.1)}40%{transform:rotate(12deg) scale(1.15)}60%{transform:rotate(-8deg) scale(1.2)}80%{transform:rotate(5deg)}}
+.hints{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:6px}
+.hints span{background:rgba(255,255,255,.22);padding:6px 10px;border-radius:999px;font-size:14px;font-weight:600}
+.tapsleft{display:block;margin-top:14px;opacity:.85}
+.reply{text-align:center;padding:34px 22px}
+.rbig{font-size:110px;line-height:1;margin:14px 0 4px;animation:pop .6s}
 
 /* passport */
 .drawer{position:fixed;inset:0 0 0 auto;width:min(420px,100%);background:var(--bg);z-index:60;transform:translateX(100%);transition:transform .35s cubic-bezier(.2,1,.3,1);display:flex;flex-direction:column;box-shadow:-20px 0 40px -20px rgba(0,0,0,.4)}
@@ -339,7 +401,7 @@ h1 em{font-style:normal;background:linear-gradient(90deg,var(--hot),var(--sun),v
 #toast.show{transform:translate(-50%,0)}
 .float{position:fixed;z-index:90;pointer-events:none;font-weight:800;color:var(--hot);animation:floatUp .9s forwards}
 @keyframes floatUp{to{transform:translateY(-50px);opacity:0}}
-#confetti{position:fixed;inset:0;pointer-events:none;z-index:70}
+#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:70}
 footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 0 30px}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
@@ -365,7 +427,7 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 0 30px}
       <h1>Plan the trip.<br><em>Skip the airport.</em></h1>
       <p class="sub">Your AI travel agent builds a dream itinerary in seconds. Browse, tweak, pick a seat, "book" it. You never pay. You never pack. You just feel great.</p>
 
-      <div class="planner">
+      <div class="planner"><div class="fx" id="pfx"></div>
         <div class="where" id="where">
           <div class="field">
             <span class="pin">📍</span>
@@ -373,6 +435,9 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 0 30px}
           </div>
           <button class="spin" id="spin">🎰 Surprise me</button>
         </div>
+        <div class="lbl">When are you dreaming of?</div>
+        <div class="chips" id="seasons"></div>
+        <p class="spitch" id="season-pitch"></p>
         <div class="sugg" id="sugg"></div>
 
         <div class="lbl">Your vibe <span style="text-transform:none;font-weight:500">(pick a few)</span></div>
@@ -391,6 +456,7 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 0 30px}
 
         <button class="cta" id="plan-btn">Plan my trip ✨</button>
         <p class="fine">No sign-up, no card, no flights. Plans stay on this device.</p>
+        <button class="dyear" id="dyear"></button>
       </div>
     </div>
     <div class="ticker"><div id="ticker"></div></div>
@@ -621,8 +687,126 @@ const PRIV = [
 const CATS = [{k:'itin',l:'🗓️ Itinerary'},{k:'attr',l:'📍 Attractions'},{k:'sight',l:'👀 Sightseeing'},{k:'tours',l:'⭐ Top tours'},{k:'gems',l:'💎 Hidden gems'},{k:'priv',l:'🤝 Private 1:1'}];
 const INTRO = {attr:"The famous ones. Worth it every time.",sight:"Views, walks and jaw-drop moments.",tours:"Highly rated by thousands of travellers.",gems:"Places locals hope you never hear about.",priv:"Advanced 1:1 excursions: just you and an expert guide. Pick your day, time and guide."};
 
+/* ---------- seasons: dream trips by season + the Dream Year board ---------- */
+const SEASONS = {
+  sp:{n:'Spring',e:'🌸',fx:['🌸','🌸','🌷'],pitch:'Cherry blossoms, rooftop brunches, first swims.'},
+  su:{n:'Summer',e:'☀️',fx:['✨','☀️','🌊'],pitch:'Long golden evenings and night markets.'},
+  au:{n:'Autumn',e:'🍂',fx:['🍂','🍁','🍂'],pitch:'Fiery leaves, harvest feasts, cosy cafés.'},
+  wi:{n:'Winter',e:'❄️',fx:['❄️','❄️','✨'],pitch:'Snowy silence, festive markets, hot springs.'},
+};
+const SKEYS = ['sp','su','au','wi'];
+const NMONTHS = {sp:[2,3,4],su:[5,6,7],au:[8,9,10],wi:[11,0,1]};
+// h: hemisphere (S = seasons are flipped, so "local spring" is Sep–Nov). Each season: [weather, signature moment]
+const SEASON_DB = {
+  kyoto:{h:'N',best:['sp','au'],
+    sp:["16°C, cherry blossoms everywhere","Hanami picnic under full-bloom cherry trees by the Kamo-Kamo River"],
+    su:["31°C, humid & festive","Gi-yawn Matsuri: giant wooden floats rolling through the streets"],
+    au:["19°C, maple-red hills","Night illumination of fiery maples at Blinkaku-ji"],
+    wi:["5°C, a chance of snow on golden roofs","The Golden-ish Pavilion dusted with snow (rare and magical)"]},
+  lisbon:{h:'N',best:['sp','su'],
+    sp:["20°C, jacarandas starting","Jacaranda-purple streets and a miradouro picnic"],
+    su:["29°C, sardine season","Santo Antónioish festival: sardines, streamers, street parties till 4am"],
+    au:["22°C, warm sea, fewer crowds","Grape-stomping day in the vineyards outside town"],
+    wi:["14°C, crisp & bright","Roasted-chestnut carts and a cosy fado night"]},
+  reykjavik:{h:'N',best:['su','wi'],
+    sp:["5°C, puffins arriving","Puffin-spotting boat trip as they return to the cliffs"],
+    su:["13°C, midnight sun","Midnight-sun hike where golden hour lasts four hours"],
+    au:["7°C, aurora season begins","First aurora of the season over the lava fields"],
+    wi:["-1°C, ice caves open","Crystal-blue ice cave inside a glacier"]},
+  marrakech:{h:'N',best:['sp','au'],
+    sp:["25°C, roses in bloom","Rose festival in the valley of a thousand roses"],
+    su:["38°C, hot hot hot","Dawn camel ride before the desert heats up"],
+    au:["27°C, golden & mild","Date harvest in the palm groves"],
+    wi:["18°C days, starry nights","Snow on the Atlass peaks, mint tea in the sun"]},
+  amalfi:{h:'N',best:['su','sp'],
+    sp:["21°C, lemons ripening","Lemon-blossom season and the first swim of the year"],
+    su:["30°C, peak la dolce vita","Fireworks over Positanno for the summer feast"],
+    au:["24°C, warm sea, quiet streets","Grape-harvest dinner on a terraced vineyard"],
+    wi:["13°C, calm & local","Nativity scenes carved into sea caves"]},
+  queenstown:{h:'S',best:['wi','su'],
+    sp:["14°C, lambs and blossoms","Spring blossom walk through Sparrowtown"],
+    su:["24°C, long golden evenings","Lakeside swim and a 10pm sunset"],
+    au:["15°C, poplars turning gold","Autumn colours festival in Sparrowtown"],
+    wi:["3°C, fresh powder","First tracks on the Remarkable-ish ski fields"]},
+  bali:{h:'S',best:['wi','sp'],
+    sp:["30°C, dry season starting","Kite festival: giant kites over the rice fields"],
+    su:["31°C, rainy season","Rainy-season waterfalls at full roar"],
+    au:["30°C, warm & green","Festival season: bamboo poles arching over every street"],
+    wi:["27°C, dry & breezy","Perfect-surf season at Ulu-What-Tu"]},
+  patagonia:{h:'S',best:['su','sp'],
+    sp:["10°C, wildflowers and wind","Wildflower trek alongside baby guanacos"],
+    su:["15°C, 17 hours of daylight","Full-day trek to Torres del Pain with the sun up at 10pm"],
+    au:["9°C, forests turn red","Lenga forests blazing red along the trail"],
+    wi:["-2°C, snowy silence","Snowshoe trek with nobody else for miles"]},
+  mexicocity:{h:'N',best:['au','sp'],
+    sp:["26°C, jacaranda season","Jacaranda-purple avenues and a rooftop mezcal"],
+    su:["24°C, afternoon storms","Rainy-afternoon churros and a museum marathon"],
+    au:["22°C, marigolds everywhere","Day of the Dead-ish parade: marigolds, candles, sugar skulls"],
+    wi:["21°C, sunny & crisp","Posada-style street party with hot ponche"]},
+  santorini:{h:'N',best:['su','au'],
+    sp:["20°C, wildflowers on the cliffs","Wildflower hike to Scary-os Rock"],
+    su:["29°C, peak sunsets","Sunset catamaran with the whole caldera glowing"],
+    au:["24°C, warm sea, grape harvest","Grape-stomping at a volcanic vineyard"],
+    wi:["14°C, quiet & moody","Stormy-sea views with the island all to yourself"]},
+  capetown:{h:'S',best:['su','sp'],
+    sp:["20°C, whales in the bay","Whale-watching from the clifftops"],
+    su:["27°C, beach season","Sunset picnic concert in the Kirsten-gosh gardens"],
+    au:["22°C, harvest in the winelands","Harvest festival in the Winelands"],
+    wi:["14°C, green & dramatic","Storm-watching at Cape Pointless with hot chocolate"]},
+};
+const SEASON_POOL = {
+  sp:["Blossom-spotting walk through the prettiest park in {c}","Spring market with the first strawberries of the year","Rooftop brunch now that it's finally warm"],
+  su:["Late-sunset swim and a picnic","Night market that only runs in summer","Ice cream for dinner (it's allowed on holiday)"],
+  au:["Leaf-peeping walk at peak colour","Cosy café with the first hot chocolate of the season","Harvest tasting with the new vintage"],
+  wi:["Holiday-lights walk through {c}","Fireside dinner somewhere very cosy","Festive market crawl with something steaming in hand"],
+};
+function seasonOf(d){
+  if (SEASON_DB[d.key]) return SEASON_DB[d.key];
+  const c=d.name.split(',')[0];
+  return {h:'N',best:[],
+    sp:["17°C, everything blooming",`First warm evening of the year on a ${c} terrace`],
+    su:["28°C, long golden evenings",`Open-air cinema under the stars in ${c}`],
+    au:["16°C, crisp & colourful",`Harvest festival in ${c} with far too many samples`],
+    wi:["4°C, cosy-coat weather",`Holiday-lights walk through ${c} with something hot to drink`]};
+}
+const inSeason = (k,s) => !!(SEASON_DB[k] && SEASON_DB[k].best.includes(s));
+function seasonStart(s,h){
+  if (!SEASONS[s]) return new Date(Date.now()+ri(18,70)*864e5);
+  const m = rnd(NMONTHS[s].map(x=>h==='S'?(x+6)%12:x)), min=Date.now()+14*864e5;
+  let d = new Date(new Date().getFullYear(), m, ri(1,26), 12);
+  while (+d<min) d = new Date(d.getFullYear()+1, m, d.getDate(), 12);
+  return d;
+}
+const seasonTemp = () => SEASONS[S.season] ? seasonOf(S.dest)[S.season][0] : S.dest.temp;
+function seasonalPool(){
+  if (!SEASONS[S.season]) return [];
+  const c=S.dest.name.split(',')[0];
+  return SEASON_POOL[S.season].map(x=>x.replace('{c}',c));
+}
+function spawnFx(el, em, n){
+  if (!el || matchMedia('(prefers-reduced-motion: reduce)').matches){ if(el) el.innerHTML=''; return; }
+  el.innerHTML = Array.from({length:n},()=>`<i style="left:${ri(0,96)}%;animation-delay:-${(Math.random()*9).toFixed(1)}s;animation-duration:${(7+Math.random()*6).toFixed(1)}s;font-size:${ri(13,24)}px">${rnd(em)}</i>`).join('');
+}
+function renderSeasons(){
+  $('#seasons').innerHTML = [['any','✨ Anytime'],...SKEYS.map(k=>[k,SEASONS[k].e+' '+SEASONS[k].n])]
+    .map(([k,l])=>`<button class="chip ${S.season===k?'on':''}" data-s="${k}">${l}</button>`).join('');
+  const se=SEASONS[S.season];
+  $('#season-pitch').textContent = se ? `${se.e} ${se.pitch} Places at their best are marked ${se.e}` : 'Pick a season for seasonal weather, festivals and one-season-only moments.';
+  spawnFx($('#pfx'), se?se.fx:[], se?12:0);
+  renderSugg();
+}
+function renderSugg(){
+  const s=S.season, keys = SEASONS[s] ? Object.keys(DB).sort((a,b)=>inSeason(b,s)-inSeason(a,s)).slice(0,8) : SUGG;
+  $('#sugg').innerHTML = keys.map(k=>`<button data-k="${k}">${DB[k].emoji} ${DB[k].name}${SEASONS[s]&&inSeason(k,s)?` <em class="ins" title="At its best in ${SEASONS[s].n.toLowerCase()}">${SEASONS[s].e}</em>`:''}</button>`).join('');
+}
+function renderDreamYear(){
+  const y=profile.year||{}, n=SKEYS.filter(k=>y[k]).length, next=SKEYS.find(k=>!y[k]);
+  $('#dyear').innerHTML = `<span class="dyt"><b>🗓️ Your Dream Year</b><small>${n===4?'All four seasons dreamed. Legendary. 🏆':`Dream one trip per season · ${n}/4 · next: ${SEASONS[next].e} ${SEASONS[next].n}`}</small></span>
+    <span class="dys">${SKEYS.map(k=>`<i class="${y[k]?'got':''}" title="${SEASONS[k].n}${y[k]?': '+esc(y[k].n):''}">${y[k]?esc(y[k].e):SEASONS[k].e}</i>`).join('')}</span>`;
+}
+
 /* ---------- state ---------- */
-const S = { days:5, vibes:new Set(["food"]), tier:1, dest:null, plan:[], pools:{}, flight:null, hotel:null, hype:0, seat:null, extras:new Set(), start:null, timers:[], tab:'itin', explore:{}, guides:[], added:{}, exc:[] };
+const S = { days:5, vibes:new Set(["food"]), tier:1, dest:null, plan:[], pools:{}, flight:null, hotel:null, hype:0, seat:null, extras:new Set(), start:null, timers:[], tab:'itin', explore:{}, guides:[], added:{}, exc:[], season:'any', temp:'', lineage:[], stolenFrom:'' };
 let profile = store.get('fw_profile', {trips:0, saved:0, stamps:[]});
 
 function findDest(q){
@@ -652,6 +836,7 @@ function renderPassport(){
     <div class="pstats"><div><b>${profile.trips}</b><small>trips planned</small></div><div><b>${compact(profile.saved)}</b><small>not spent</small></div><div><b>${new Set(st.map(s=>s.code)).size}</b><small>places</small></div></div>
     <p style="margin-bottom:4px;font-weight:600">Status: ${lev}</p>
     <p style="margin-bottom:14px;color:var(--muted)">🎟️ ${profile.exc||0} tours & private excursions booked</p>
+    <div class="dyb"><b>🗓️ Dream Year ${SKEYS.filter(k=>(profile.year||{})[k]).length}/4</b><div class="dyg">${SKEYS.map(k=>{ const y=(profile.year||{})[k]; return `<div class="${y?'got':''}"><span>${y?esc(y.e):SEASONS[k].e}</span><b>${y?esc(y.n.split(',')[0]):'Not yet'}</b><small>${SEASONS[k].e} ${SEASONS[k].n}</small></div>`; }).join('')}</div></div>
     ${st.length ? `<div class="stamps">${st.slice().reverse().map((s,i)=>`<div class="stamp" style="--c:${s.color};--rot:${s.rot}deg;animation-delay:${i*.05}s"><small>${esc(s.name)}</small><b>${esc(s.code)}</b><small>${esc(s.date)}</small></div>`).join('')}</div>`
       : `<div class="empty"><div style="font-size:48px">🛂</div><p>No stamps yet. Plan and "book" a trip to get your first.</p></div>`}`;
 }
@@ -679,7 +864,11 @@ function clearTimers(){ S.timers.forEach(clearInterval); S.timers=[]; }
 
 /* ---------- home ---------- */
 function initHome(){
-  $('#sugg').innerHTML = SUGG.map(k=>`<button data-k="${k}">${DB[k].emoji} ${DB[k].name}</button>`).join('');
+  renderSeasons(); renderDreamYear();
+  $('#seasons').onclick = e => { const b=e.target.closest('.chip'); if(!b) return; S.season=b.dataset.s; renderSeasons(); tap(SEASONS[S.season]?820:500);
+    if (SEASONS[S.season]) toast(`${SEASONS[S.season].e} ${SEASONS[S.season].n} mode: ${SEASONS[S.season].pitch}`); };
+  $('#dyear').onclick = () => { const next=SKEYS.find(k=>!(profile.year||{})[k]); if(!next){ toast('🏆 Dream Year complete. Go again for a second lap?'); return; }
+    S.season=next; renderSeasons(); tap(820); $('#seasons').scrollIntoView({behavior:'smooth',block:'center'}); toast(`${SEASONS[next].e} Next up for your Dream Year: ${SEASONS[next].n}`); };
   $('#sugg').onclick = e => { const b=e.target.closest('button'); if(!b) return; $('#dest').value = DB[b.dataset.k].name; tap(700); };
   $('#vibes').innerHTML = VIBES.map(v=>`<button class="chip ${S.vibes.has(v.k)?'on':''}" data-k="${v.k}">${v.l}</button>`).join('');
   $('#vibes').onclick = e => { const b=e.target.closest('.chip'); if(!b) return; const k=b.dataset.k;
@@ -699,7 +888,8 @@ function initHome(){
 let spinning=false;
 async function spin(){
   if (spinning) return; spinning=true;
-  const names = Object.values(DB).map(d=>d.emoji+' '+d.name), input=$('#dest');
+  const keys = SEASONS[S.season] ? Object.keys(DB).filter(k=>inSeason(k,S.season)) : Object.keys(DB);
+  const names = keys.map(k=>DB[k].emoji+' '+DB[k].name), input=$('#dest');
   $('#where').classList.add('spinning');
   let delay=40, pick;
   for (let i=0;i<22;i++){ pick=rnd(names); input.value=pick; blip(300+i*30,.04,'square',.03); await wait(delay); delay*=1.13; }
@@ -714,12 +904,10 @@ async function startPlan(){
   let q = $('#dest').value; if (!q.trim()){ await spin(); q=$('#dest').value; }
   const d = findDest(q); S.dest=d; S.hype=0; S.seat=null; S.extras=new Set();
   document.documentElement.style.setProperty('--g1', d.c[0]); document.documentElement.style.setProperty('--g2', d.c[1]);
-  S.start = new Date(Date.now() + ri(18,70)*864e5);
-  const end = new Date(+S.start + (S.days-1)*864e5);
+  S.start = seasonStart(S.season, seasonOf(d).h); S.temp = seasonTemp(); S.lineage=[]; S.stolenFrom='';
   tap(880);
   show('plan');
-  $('#banner').innerHTML = `<div class="big">${d.emoji}</div><small>${TIERS[S.tier].e} ${TIERS[S.tier].n} · ${esc(d.country)}</small><h2>${S.days} days in ${esc(d.name)}</h2>
-    <div class="meta"><span>📅 ${fmtDate(S.start)} – ${fmtDate(end)}</span><span>☀️ ${esc(d.temp)}</span><span>👥 Just you (and your imagination)</span>${d.lookalike?`<span>🤫 Not to be confused with ${esc(d.lookalike)}</span>`:''}</div>`;
+  renderBanner();
   setHype(0);
   S.tab='itin'; S.added={}; S.exc=[]; $('#tabs').innerHTML=''; $('#explore').style.display='none'; $('#itin').style.display='';
   $('#aside').innerHTML='';
@@ -740,16 +928,31 @@ async function startPlan(){
   const tb=$('#tabs'); tb.classList.add('nudge'); setTimeout(()=>tb.classList.remove('nudge'),600);
   startLive();
 }
-function pool(k){
+function renderBanner(){
+  const d=S.dest, end=new Date(+S.start+(S.days-1)*864e5), se=SEASONS[S.season], sd=seasonOf(d);
+  $('#banner').innerHTML = `<div class="fx" id="bfx"></div><div class="big">${d.emoji}</div><small>${TIERS[S.tier].e} ${TIERS[S.tier].n} · ${esc(d.country)}${se?` · ${se.e} ${sd.h==='S'?'Local ':''}${se.n}`:''}</small><h2>${S.days} days in ${esc(d.name)}</h2>
+    <div class="meta"><span>📅 ${fmtDate(S.start)} – ${fmtDate(end)}</span><span>${se?se.e:'☀️'} ${esc(S.temp)}</span>${se&&sd.best.includes(S.season)?'<span>🔥 Peak season</span>':''}<span>👥 Just you (and your imagination)</span>${d.lookalike?`<span>🤫 Not to be confused with ${esc(d.lookalike)}</span>`:''}${S.stolenFrom?`<span>🏴‍☠️ Stolen from ${esc(S.stolenFrom)}</span>`:''}</div>`;
+  spawnFx($('#bfx'), se?se.fx:[], se?14:0);
+}
+function pool(k, avoid){
   if (!S.pools[k] || !S.pools[k].length){
-    let base = k==='act' ? [...S.dest.act, ...VIBES.filter(v=>S.vibes.has(v.k)).flatMap(v=>v.x)] : [...S.dest.food];
+    let base = k==='act' ? [...S.dest.act, ...VIBES.filter(v=>S.vibes.has(v.k)).flatMap(v=>v.x), ...seasonalPool()] : [...S.dest.food];
     S.pools[k] = shuffle(base);
   }
-  return S.pools[k].pop();
+  // prefer something that isn't already in the plan, so a swap always changes the stop
+  const used = new Set(S.plan.flatMap(d=>d.items.map(i=>i.txt)));
+  let i = S.pools[k].findIndex(t=>!used.has(t));
+  if (i<0) i = S.pools[k].findIndex(t=>t!==avoid);
+  if (i<0){
+    if (avoid===null) return S.pools[k].pop();          // second pass: take anything
+    S.pools[k]=[]; return pool(k, null);                 // refill once and retry
+  }
+  return S.pools[k].splice(i,1)[0];
 }
-function makeItem(k,t){
-  const m = TIERS[S.tier].m;
-  return { k, t, txt:pool(k), cost: Math.round((k==='food'?ri(14,80):ri(0,70))*m/5)*5, tag: Math.random()<.22?rnd(TAGS):'', liked:false };
+function makeItem(k,t,avoid){
+  const m = TIERS[S.tier].m, txt = pool(k, avoid), se=SEASONS[S.season];
+  const tag = se && seasonalPool().includes(txt) ? `${se.e} ${se.n} only` : Math.random()<.22?rnd(TAGS):'';
+  return { k, t, txt, cost: Math.round((k==='food'?ri(14,80):ri(0,70))*m/5)*5, tag, liked:false };
 }
 function buildPlan(){
   S.pools={}; S.plan=[];
@@ -759,6 +962,15 @@ function buildPlan(){
     const slots=[["08:30","act"],["12:30","food"],["15:00","act"],["19:30", i%2?"act":"food"]];
     S.plan.push({ title, items: slots.map(([t,k])=>makeItem(k,t)) });
   }
+  const se=SEASONS[S.season];
+  if (se){
+    const di=Math.min(1,S.days-1), items=S.plan[di].items;
+    items.push({k:'x',t:'17:00',txt:seasonOf(S.dest)[S.season][1],cost:Math.round(ri(20,60)*TIERS[S.tier].m/5)*5,tag:`${se.e} ${se.n} only`,liked:true,xid:'season',lab:`${se.e} Seasonal moment`});
+    items.sort((a,b)=>a.t.localeCompare(b.t));
+  }
+  buildTravel();
+}
+function buildTravel(){
   const tier=TIERS[S.tier];
   const fp = Math.round(S.dest.base*tier.f);
   S.flight = { air:rnd(AIRLINES), was: Math.round(fp*1.35), price: fp, out:`${String(ri(6,22)).padStart(2,'0')}:${rnd(['05','20','35','50'])}`, dur:`${ri(3,15)}h ${ri(0,55)}m`, cab:tier.cab, watching:ri(4,19) };
@@ -776,8 +988,8 @@ function dayEl(i){
 function itemHTML(i,j){
   const it=S.plan[i].items[j];
   const kind = kindOf(it);
-  return `<div class="item" data-i="${i}" data-j="${j}"><div class="t">${it.t}</div>
-    <div class="txt"><span class="k">${kind}</span>${esc(it.txt)}${it.tag?`<span class="tag">${it.tag}</span>`:''}<div class="cost">${it.cost?'≈ '+money(it.cost)+' · yours free':'Free (actually free)'}</div></div>
+  return `<div class="item" data-i="${i}" data-j="${j}"><div class="t">${esc(it.t)}</div>
+    <div class="txt"><span class="k">${esc(kind)}</span>${esc(it.txt)}${it.tag?`<span class="tag">${esc(it.tag)}</span>`:''}<div class="cost">${it.cost?'≈ '+money(it.cost)+' · yours free':'Free (actually free)'}</div></div>
     <div class="acts"><button class="mini ${it.liked?'liked':''}" data-a="like" aria-label="Love it">${it.liked?'❤️':'🤍'}</button>${it.xid?`<button class="mini" data-a="rm" aria-label="Remove">✕</button>`:`<button class="mini" data-a="swap" aria-label="Swap this">🔄</button>`}</div></div>`;
 }
 $('#itin').addEventListener('click', e => {
@@ -791,7 +1003,7 @@ $('#itin').addEventListener('click', e => {
     const n=dayEl(i); n.style.animation='none'; row.closest('.day').replaceWith(n);
     tap(300); renderTabs(); renderExc(); toast('Removed. Plenty more where that came from.');
   } else {
-    S.plan[i].items[j] = makeItem(it.k, it.t);
+    S.plan[i].items[j] = makeItem(it.k, it.t, it.txt);
     const tmp=document.createElement('div'); tmp.innerHTML=itemHTML(i,j); const n=tmp.firstElementChild;
     n.classList.add('swap'); row.replaceWith(n); tap(620); addHype(4, n.querySelector('[data-a=swap]'));
   }
@@ -807,7 +1019,7 @@ function renderAside(){
   $('#aside').innerHTML = `
   <div class="card" style="animation:fadeUp .4s both"><div class="hd"><span>✈️ Flight · ${f.cab}</span><span>${esc(f.air)}</span></div>
     <div class="route"><span>HOME</span><span class="line"></span><span>${esc(d.code)}</span></div>
-    <div style="display:flex;justify-content:space-between;color:var(--muted);font-size:14px;margin-top:6px"><span>Departs ${f.out}</span><span>${f.dur} · nonstop</span></div>
+    <div style="display:flex;justify-content:space-between;color:var(--muted);font-size:14px;margin-top:6px"><span>Departs ${esc(f.out)}</span><span>${esc(f.dur)} · nonstop</span></div>
     <div class="price"><b id="fprice">${money(f.price)}</b><s>${money(f.was)}</s></div>
     <div class="live" id="watch">👀 ${f.watching} people are looking at this flight</div></div>
   <div class="card" style="animation:fadeUp .4s .1s both"><div class="hd"><span>🏨 Stay · ${Math.max(1,S.days-1)} nights</span><span class="stars">${'★'.repeat(h.stars)}</span></div>
@@ -968,7 +1180,7 @@ function renderExc(){
   if (!S.exc.length){ el.style.display='none'; return; }
   el.style.display='';
   el.innerHTML = `<div class="hd"><span>🎟️ Your excursions</span><span>${S.exc.length}</span></div>`+
-    S.exc.slice().sort((a,b)=>a.day-b.day||a.time.localeCompare(b.time)).map(x=>`<div class="excl"><span style="font-size:22px">${x.emoji}</span><div><b>${esc(x.title)}</b><small>Day ${x.day+1} · ${x.time}${x.guide?` · with ${esc(x.guide)}`:''}</small></div></div>`).join('');
+    S.exc.slice().sort((a,b)=>a.day-b.day||a.time.localeCompare(b.time)).map(x=>`<div class="excl"><span style="font-size:22px">${esc(x.emoji)}</span><div><b>${esc(x.title)}</b><small>Day ${x.day+1} · ${x.time}${x.guide?` · with ${esc(x.guide)}`:''}</small></div></div>`).join('');
 }
 
 /* ---------- booking ---------- */
@@ -1026,6 +1238,7 @@ function snapshot(){
   const cab = S.extras.has('upgrade') || /^[12][A-F]$/.test(S.seat) ? 'First' : S.flight.cab;
   return { v:1, ref:Math.random().toString(36).slice(2,8).toUpperCase(), gate:rnd("ABCDE")+ri(1,40),
     d:{n:d.name,co:d.country,code:d.code,e:d.emoji,c:d.c}, days:S.days, start:S.start.toISOString().slice(0,10), tier:TIERS[S.tier].n,
+    s:S.season, tp:S.temp, ch:S.lineage||[],
     seat:S.seat, cab, f:{a:S.flight.air,o:S.flight.out,du:S.flight.dur,p:S.flight.price},
     h:{n:S.hotel.name,pn:S.hotel.nightly,s:S.hotel.stars,r:S.hotel.rating,ni:nights},
     x:[...S.extras].map(k=>EXTRAS.find(e=>e.k===k)).filter(Boolean).map(e=>e.e+' '+e.n),
@@ -1037,10 +1250,18 @@ function book(){
   const T=snapshot(), d=S.dest;
   profile.trips++; profile.saved+=T.tot; profile.exc=(profile.exc||0)+S.exc.length;
   profile.stamps.push({ name:d.name.split(',')[0], code:d.code, date:fmtDate(S.start), color:d.c[0], rot:ri(-18,18) });
-  store.set('fw_profile', profile); renderHeader();
+  let year=null;
+  if (SEASONS[S.season]){
+    const before=SKEYS.filter(k=>(profile.year||{})[k]).length;
+    profile.year={...(profile.year||{}), [S.season]:{n:d.name, e:d.emoji}};
+    const after=SKEYS.filter(k=>profile.year[k]).length;
+    year={n:after, done:after===4 && before<4};
+  }
+  store.set('fw_profile', profile); renderHeader(); renderDreamYear();
   $('#toast').classList.remove('show');
-  showConfirm(T,false);
+  showConfirm(T,false,{year});
   chord(); buzz([30,40,60]); confetti(220); setTimeout(()=>confetti(120), 600);
+  if (year && year.done) setTimeout(()=>{ confetti(260); chord(); toast('🏆 DREAM YEAR COMPLETE. Four seasons, zero flights.'); }, 1400);
 }
 
 /* share links: the whole itinerary lives in the URL hash, compressed. Nothing is sent to a server. */
@@ -1059,23 +1280,86 @@ async function unpackTrip(p){
   return JSON.parse(new TextDecoder().decode(bytes));
 }
 const baseURL = () => location.href.split('#')[0];
+const getNick = () => String(store.get('fw_nick','')||'').slice(0,20);
+const REACTS = [['🙋',"I'm in"],['😭','Take me with you'],['🤯',"That's a lot of gelato"],['🧳','Already packing'],['😤','Jealous. Unfollowing you.']];
+
+/* send buttons shared by trip links and reaction replies */
+function sendButtons(box, link, msg, subject, o={}){
+  const enc=encodeURIComponent;
+  box.innerHTML =
+    (navigator.share?`<button class="pri" data-act="share">📤 Share</button>`:'')+
+    `<a class="${navigator.share?'':'pri'}" href="mailto:?subject=${enc(subject)}&body=${enc(msg+'\n\n'+link)}">✉️ Email</a>`+
+    `<a href="sms:?&body=${enc(msg+' '+link)}">💬 Text</a>`+
+    `<a href="https://wa.me/?text=${enc(msg+' '+link)}" target="_blank" rel="noopener">🟢 WhatsApp</a>`+
+    (o.postcard?`<button data-act="postcard">📸 Postcard</button>`:'')+
+    (o.print?`<button data-act="print">🖨️ Save PDF</button>`:'');
+  box.onclick = async e => {
+    const b=e.target.closest('[data-act]'); if(!b) return;
+    if (b.dataset.act==='share'){ try{ await navigator.share({title:subject, text:msg, url:link}); toast('📨 Sent!'); }catch{} }
+    if (b.dataset.act==='print') window.print();
+    if (b.dataset.act==='postcard') o.postcard(b);
+  };
+}
+function linkRow(input, btn, link){
+  input.value=link;
+  btn.onclick = async e => { try{ await navigator.clipboard.writeText(link); }catch{ input.select(); document.execCommand && document.execCommand('copy'); }
+    tap(900); floater(e.currentTarget,'Copied!'); toast('🔗 Link copied. Paste it anywhere.'); };
+}
+
+/* postcard image for stories and group chats */
+async function postcardBlob(T, surprise){
+  const W=1080, H=1350, c=document.createElement('canvas'); c.width=W; c.height=H; const g=c.getContext('2d');
+  const D=T.d||{}, cols=(Array.isArray(D.c)?D.c:[]).filter(x=>/^#[0-9a-f]{6}$/i.test(x)), se=SEASONS[T.s];
+  const gr=g.createLinearGradient(0,0,W,H); gr.addColorStop(0,cols[0]||'#ff5f6d'); gr.addColorStop(1,cols[1]||'#ffc371'); g.fillStyle=gr; g.fillRect(0,0,W,H);
+  try{ await document.fonts.ready; }catch{}
+  const F='"Bricolage Grotesque", system-ui, sans-serif';
+  g.textBaseline='alphabetic';
+  if (se){ g.globalAlpha=.28; g.font=`70px ${F}`; for(let i=0;i<16;i++) g.fillText(rnd(se.fx), ri(0,W-60), ri(80,H-80)); }
+  g.globalAlpha=.3; g.font=`560px ${F}`; g.fillText(surprise?'🎁':String(D.e||'🌍'), 470, 1150);
+  g.globalAlpha=1; g.fillStyle='#fff';
+  g.font=`800 40px ${F}`; g.fillText(surprise?'A SURPRISE TRIP FOR YOU':'WISH YOU WERE HERE', 80, 150);
+  g.font=`800 72px ${F}`; g.fillText(`${Number(T.days)||1} DAYS IN`, 80, 300);
+  let size=170, name=surprise?'???':String(D.n||'Somewhere');
+  do { g.font=`800 ${size}px ${F}`; size-=6; } while (g.measureText(name).width>920 && size>50);
+  g.fillText(name, 80, 300+size+20);
+  if (se){ g.font=`700 44px ${F}`; g.fillText(`${se.e} ${se.n} dream trip`, 80, 300+size+100); }
+  const y0=880; g.fillStyle='rgba(255,255,255,.95)'; g.beginPath(); g.roundRect ? g.roundRect(70,y0,W-140,330,40) : g.rect(70,y0,W-140,330); g.fill();
+  g.fillStyle='#1d1630'; g.font=`800 84px ${F}`; g.fillText(`HOME ✈️ ${surprise?'???':String(D.code||'')}`, 120, y0+120);
+  g.font=`600 40px ${F}`; g.fillStyle='#6f6880';
+  g.fillText('Boards: never ✨   Paid: $0.00', 120, y0+200);
+  g.fillText(`Trip value ${money(Math.max(0,Number(T.tot)||0))} · 0 kg CO₂`, 120, y0+265);
+  g.fillStyle='#fff'; g.font=`700 32px ${F}`; g.fillText('Planned on Trip Planner · skyspeak.github.io/fernweh', 80, H-60);
+  return new Promise(r=>c.toBlob(r,'image/png'));
+}
+async function sharePostcard(T, surprise, msg, link, btn){
+  btn.disabled=true; const blob=await postcardBlob(T, surprise); btn.disabled=false;
+  if (!blob) return toast("Couldn't draw the postcard on this browser.");
+  const name=`trip-${surprise?'surprise':String(T.d&&T.d.code||'card').toLowerCase()}.png`, file=new File([blob],name,{type:'image/png'});
+  try{ if (navigator.canShare && navigator.canShare({files:[file]})){ await navigator.share({files:[file], text:msg+' '+link}); toast('📸 Postcard sent!'); return; } }catch{ return; }
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href), 4000); tap(900); toast('📸 Postcard saved. Post it, frame it, live in it.');
+}
 
 /* Render the confirmation page. Shared links are untrusted input, so every value is escaped or coerced. */
-async function showConfirm(T, shared){
+async function showConfirm(T, shared, opts={}){
   const N=v=>Math.max(0,Number(v)||0), str=v=>esc(String(v??'').slice(0,160)), arr=v=>Array.isArray(v)?v:[];
-  const D=T.d||{}, cols=arr(D.c).filter(c=>/^#[0-9a-f]{6}$/i.test(c));
+  const D=T.d||{}, cols=arr(D.c).filter(c=>/^#[0-9a-f]{6}$/i.test(c)), se=SEASONS[T.s];
   if (cols.length===2){ document.documentElement.style.setProperty('--g1',cols[0]); document.documentElement.style.setProperty('--g2',cols[1]); }
+  if (shared && T.sur && !opts.unwrapped) return showGift(T);
   const start=new Date((/^\d{4}-\d\d-\d\d$/.test(T.start)?T.start:'2027-01-01')+'T12:00:00');
   const dayDt=i=>new Date(+start+i*864e5), days=Math.min(30,N(T.days)||1);
   const F=T.f||{}, H=T.h||{}, ex=arr(T.ex).slice().sort((a,b)=>N(a.d)-N(b.d)||String(a.tm).localeCompare(String(b.tm)));
   const plan=arr(T.p).slice(0,30), nItems=plan.reduce((s,d)=>s+arr(d.i).length,0);
-  const end=fmtDate(dayDt(days-1));
+  const chain=[...arr(T.ch), T.by].map(x=>String(x??'').trim().slice(0,20)).filter(Boolean).slice(-8);
+  const by=String(T.by??'').trim().slice(0,20), Y=opts.year;
   $('#conf').innerHTML = `
-    <div class="chero"><div class="big">${str(D.e)}</div>
-      <small>${shared?'📬 A trip was shared with you':`<span class="okpill">✅ Booking confirmed · Ref ${str(T.ref)}</span>`}</small>
+    <div class="chero"><div class="fx" id="cfx"></div><div class="big">${str(D.e)}</div>
+      <small>${shared?`📬 ${by?esc(by)+' shared a trip with you':'A trip was shared with you'}`:`<span class="okpill">✅ Booking confirmed · Ref ${str(T.ref)}</span>`}</small>
       <h2>${shared?`${days} days in ${str(D.n)}`:"You're going! 🎉"}</h2>
       <p>${shared?'Someone planned every detail of this trip and isn\'t going. Classic. Here\'s their confirmed itinerary.':`${days} days in ${str(D.n)}, ${str(D.co)}. (Not really. But doesn't it feel nice?)`}</p>
+      ${se||Y?`<div class="cchips">${se?`<span>${se.e} ${se.n} dream trip</span>`:''}${Y?`<span>🗓️ Dream Year ${Y.n}/4${Y.done?' · COMPLETE 🏆':''}</span>`:''}</div>`:''}
     </div>
+    ${chain.length?`<div class="lineage"><b>🔗 Trip lineage</b><div>${chain.map(c=>`<span>${esc(c)}</span>`).join('<i>→</i>')}<i>→</i><span class="you">${shared?'you?':'next?'}</span></div><small>${chain.length>1?`Stolen and re-shared ${chain.length-1} time${chain.length>2?'s':''}. It's practically folklore.`:'Steal it, remix it, pass it on.'}</small></div>`:''}
     <div class="pass">
       <div class="top"><span>🧳 ${str(F.a)}</span><span>${str(T.cab).toUpperCase()}</span></div>
       <div class="codes"><div><small>From</small><b>HOME</b><small>Your couch</small></div><div style="font-size:28px">✈️</div><div style="text-align:right"><small>To</small><b>${str(D.code)}</b><small>${str(D.n)}</small></div></div>
@@ -1084,11 +1368,12 @@ async function showConfirm(T, shared){
       <div class="tear"></div><div class="barcode"></div>
       <div class="foot">Booking ref ${str(T.ref)}${shared?'':' · Passport stamped 🛂'}</div>
     </div>
+    ${shared?`<div class="steal"><div><b>🏴‍☠️ Like it? Steal it.</b><small>Copy this whole trip into your planner, remix anything, then book it as yours.</small></div><button id="c-steal">Steal this trip</button></div>`:''}
     <div class="pstats"><div><b>${money(N(T.tot))}</b><small>not spent</small></div><div><b>${nItems}</b><small>plans confirmed</small></div><div><b>0 kg</b><small>CO₂ emitted</small></div></div>
 
     <div class="csec">
       <h3>📋 Confirmed itinerary</h3>
-      <p class="sub2">${fmtDate(start)} – ${end} · ${str(T.tier)} · everything below is booked and paid ($0.00)</p>
+      <p class="sub2">${fmtDate(start)} – ${fmtDate(dayDt(days-1))} · ${str(T.tier)}${T.tp?` · ${se?se.e:'☀️'} ${str(T.tp)}`:''} · everything below is booked and paid ($0.00)</p>
       <div class="crow"><span class="ic">✈️</span><div><b>${str(F.a)}: HOME → ${str(D.code)}</b><small>${fmtDate(start)} · departs ${str(F.o)} · ${str(F.du)} nonstop · seat ${str(T.seat)}, ${str(T.cab)}</small></div><span class="ok">✓ Confirmed</span></div>
       <div class="crow"><span class="ic">🏨</span><div><b>${str(H.n)}</b><small>${N(H.ni)} night${N(H.ni)===1?'':'s'} · ${'★'.repeat(Math.min(5,N(H.s)))} · ${str(H.r)} "Exceptional" · ${money(N(H.pn))}/night value</small></div><span class="ok">✓ Confirmed</span></div>
       ${ex.map(e=>`<div class="crow"><span class="ic">${str(e.e)}</span><div><b>${str(e.t)}</b><small>${e.pv?'Private 1:1':'Small-group tour'} · Day ${N(e.d)+1}, ${fmtDate(dayDt(N(e.d)))} at ${str(e.tm)}${e.g?` · guide: ${str(e.g)}`:''}</small></div><span class="ok">✓ Booked</span></div>`).join('')}
@@ -1098,38 +1383,148 @@ async function showConfirm(T, shared){
       <div class="ctot"><span>Trip value ${money(N(T.tot))}</span><span>${shared?'They paid':'You paid'} <b>$0.00</b></span></div>
     </div>
 
+    ${shared?`<div class="csec"><h3>💬 React & send it back</h3><p class="sub2">Pick a reaction and you'll get a link to send back to ${by?esc(by):'whoever sent this'}.</p>
+      <div class="reacts" id="reacts">${REACTS.map((r,i)=>`<button data-r="${i}"><span>${r[0]}</span>${esc(r[1])}</button>`).join('')}</div><div id="rsend"></div></div>`:''}
+
     <div class="csec csend">
       <h3>📨 ${shared?'Pass it on':'Send your itinerary'}</h3>
       <p class="sub2">This link opens this exact itinerary as a web page. No sign-up, and nothing is stored on a server: the trip lives inside the link.</p>
+      ${shared?'':`<div class="sopts">
+        <label class="nick"><span>✍️ Sign it</span><input id="cnick" maxlength="20" placeholder="Your name (optional)" autocomplete="nickname"></label>
+        <button class="extra" id="csur"><span class="e">🎁</span><div><b>Send as a surprise</b><small>They tap to unwrap before they see where</small></div><span class="sw"></span></button>
+      </div>`}
       <div class="linkrow"><input id="clink" readonly value="Making your link…" aria-label="Itinerary link"><button id="ccopy">🔗 Copy</button></div>
       <div class="sbtns" id="csend-btns"></div>
     </div>
     <div class="mbtns">${shared?'':'<button id="c-pass">🛂 Passport</button>'}<button class="p" id="c-again">${shared?'Plan my own trip ✨':'Plan another ✨'}</button></div>`;
   show('confirm');
+  if (se) spawnFx($('#cfx'), se.fx, 12);
   $('#c-again').onclick = ()=>{ clearHash(); $('#dest').value=''; show('home'); tap(700); };
   if ($('#c-pass')) $('#c-pass').onclick = openPassport;
+  if ($('#c-steal')) $('#c-steal').onclick = ()=>stealTrip(T);
 
-  const link = baseURL()+'#trip='+await packTrip(T);
-  const msg = shared ? `Look at this trip to ${D.n} (nobody's going, it's perfect):` : `My trip to ${D.n} is confirmed ✈️ ${days} days, ${nItems} plans, $0.00. (I'm not going.)`;
-  const enc=encodeURIComponent;
-  $('#clink').value = link;
-  $('#ccopy').onclick = async e => { try{ await navigator.clipboard.writeText(link); }catch{ $('#clink').select(); document.execCommand && document.execCommand('copy'); }
-    tap(900); floater(e.currentTarget,'Copied!'); toast('🔗 Link copied. Paste it anywhere.'); };
-  $('#csend-btns').innerHTML =
-    (navigator.share?`<button class="pri" id="cshare">📤 Share</button>`:'')+
-    `<a class="${navigator.share?'':'pri'}" href="mailto:?subject=${enc((shared?'A trip to ':'My confirmed trip to ')+D.n+' ✈️')}&body=${enc(msg+'\n\n'+link)}">✉️ Email</a>`+
-    `<a href="sms:?&body=${enc(msg+' '+link)}">💬 Text</a>`+
-    `<a href="https://wa.me/?text=${enc(msg+' '+link)}" target="_blank" rel="noopener">🟢 WhatsApp</a>`+
-    `<a href="${esc(link)}" target="_blank" rel="noopener">🌐 Open page</a>`+
-    `<button id="cprint">🖨️ Save PDF</button>`;
-  if ($('#cshare')) $('#cshare').onclick = async ()=>{ try{ await navigator.share({title:`Trip to ${D.n}`, text:msg, url:link}); toast('📨 Sent!'); }catch{} };
-  $('#cprint').onclick = ()=>window.print();
+  const o={sur:shared?!!T.sur:false};
+  const update = async () => {
+    const nick = shared ? by : getNick();
+    const X={...T}; delete X.sur; delete X.by;
+    if (o.sur) X.sur=1;
+    if (nick) X.by=nick;
+    const link = baseURL()+'#trip='+await packTrip(X);
+    const msg = o.sur ? `${nick?nick+' booked':'I booked'} you a surprise trip 🎁 Unwrap it:` : shared ? `Look at this trip to ${D.n} (nobody's going, it's perfect):` : `My trip to ${D.n} is confirmed ✈️ ${days} days, ${nItems} plans, $0.00. (I'm not going.)`;
+    const subject = o.sur ? '🎁 A surprise trip for you' : (shared?'A trip to ':'My confirmed trip to ')+D.n+' ✈️';
+    linkRow($('#clink'), $('#ccopy'), link);
+    sendButtons($('#csend-btns'), link, msg, subject, {print:true, postcard:btn=>sharePostcard(X, o.sur, msg, link, btn)});
+  };
+  if (!shared){
+    $('#cnick').value = getNick();
+    let tmr; $('#cnick').oninput = e => { store.set('fw_nick', e.target.value.trim().slice(0,20)); clearTimeout(tmr); tmr=setTimeout(update,300); };
+    $('#csur').onclick = e => { o.sur=!o.sur; e.currentTarget.classList.toggle('on',o.sur); tap(o.sur?900:400); if(o.sur){ floater(e.currentTarget.querySelector('.sw'),'🎁'); toast('🎁 Surprise mode: they unwrap it to see where.'); } update(); };
+  } else {
+    $('#reacts').onclick = async e => {
+      const b=e.target.closest('[data-r]'); if(!b) return; const r=+b.dataset.r;
+      document.querySelectorAll('#reacts button').forEach(x=>x.classList.toggle('on',x===b)); tap(700+r*60); floater(b,REACTS[r][0]);
+      const me=getNick();
+      const link = baseURL()+'#reply='+await packTrip({v:1,r,n:D.n,e:D.e,ref:T.ref,by:me,c:cols});
+      const msg = `${REACTS[r][0]} ${REACTS[r][1]}! (re: your trip to ${D.n})`;
+      $('#rsend').innerHTML = `<label class="nick" style="margin-top:12px"><span>✍️ From</span><input id="rnick" maxlength="20" placeholder="Your name (optional)" value="${esc(me)}"></label>
+        <div class="linkrow"><input id="rlink" readonly aria-label="Reply link"><button id="rcopy">🔗 Copy</button></div><div class="sbtns" id="rbtns"></div>`;
+      linkRow($('#rlink'), $('#rcopy'), link);
+      sendButtons($('#rbtns'), link, msg, `${REACTS[r][0]} Re: your trip to ${D.n}`);
+      $('#rnick').onchange = ev => { store.set('fw_nick', ev.target.value.trim().slice(0,20)); b.click(); };
+    };
+  }
+  await update();
 }
+
+/* surprise links: a gift to unwrap before the trip is revealed */
+function showGift(T){
+  const N=v=>Math.max(0,Number(v)||0), se=SEASONS[T.s], by=String(T.by??'').trim().slice(0,20), F=T.f||{};
+  $('#conf').innerHTML = `<div class="gift"><div class="fx" id="gfx"></div>
+    <small>🎁 Surprise trip</small>
+    <h2>${by?esc(by)+' booked':'Someone booked'} you a trip</h2>
+    <p>Destination: classified. Tap the gift to unwrap it.</p>
+    <button class="gbox" id="gbox" aria-label="Unwrap the gift">🎁</button>
+    <div class="hints"><span>📅 ${Math.min(30,N(T.days)||1)} days</span>${se?`<span>${se.e} ${se.n}</span>`:''}<span>✈️ ${esc(String(F.du??'').slice(0,10))} flight</span><span>💸 $0.00</span></div>
+    <small class="tapsleft" id="tapsleft">3 taps to go</small></div>`;
+  show('confirm');
+  spawnFx($('#gfx'), se?se.fx:['✨','🎉','✨'], 12);
+  let taps=0;
+  $('#gbox').onclick = e => {
+    taps++; const b=e.currentTarget; b.classList.remove('shake'); void b.offsetWidth; b.classList.add('shake');
+    blip(400+taps*200,.12,'triangle',.07); buzz(20*taps);
+    $('#tapsleft').textContent = taps<3 ? `${3-taps} tap${3-taps>1?'s':''} to go` : '';
+    if (taps>=3){ b.textContent='💥'; confetti(260,b); chord(); setTimeout(()=>{ showConfirm(T,true,{unwrapped:true}); confetti(140); },500); }
+  };
+}
+
+/* replies: a reaction sent back to whoever shared the trip */
+function showReply(R){
+  const r=REACTS[Math.min(REACTS.length-1,Math.max(0,Number(R.r)||0))], by=String(R.by??'').trim().slice(0,20);
+  const cols=(Array.isArray(R.c)?R.c:[]).filter(c=>/^#[0-9a-f]{6}$/i.test(c));
+  if (cols.length===2){ document.documentElement.style.setProperty('--g1',cols[0]); document.documentElement.style.setProperty('--g2',cols[1]); }
+  $('#conf').innerHTML = `<div class="chero reply"><div class="big">${esc(String(R.e??'💌').slice(0,4))}</div>
+      <small>💌 A reply to your trip</small>
+      <div class="rbig">${r[0]}</div>
+      <h2>"${esc(r[1])}"</h2>
+      <p>${by?esc(by):'Someone'} reacted to your trip to ${esc(String(R.n??'somewhere').slice(0,40))}${R.ref?` (ref ${esc(String(R.ref).slice(0,8))})`:''}.</p></div>
+    <div class="mbtns"><button id="c-pass">🛂 Passport</button><button class="p" id="c-again">Plan another trip ✨</button></div>`;
+  show('confirm');
+  $('#c-again').onclick = ()=>{ clearHash(); $('#dest').value=''; show('home'); tap(700); };
+  $('#c-pass').onclick = openPassport;
+  setTimeout(()=>{ confetti(160); chord(); },250);
+}
+
+/* steal: copy a shared trip into your own planner so you can remix and book it */
+function stealTrip(T){
+  const N=v=>Math.max(0,Number(v)||0), s=(v,l=120)=>String(v??'').slice(0,l), arr=v=>Array.isArray(v)?v:[];
+  const d=findDest(s(T.d&&T.d.n,40)||'Somewhere'); delete d.lookalike;
+  S.dest=d; S.tier=Math.max(0,TIERS.findIndex(t=>t.n===T.tier)); S.season=SEASONS[T.s]?T.s:'any';
+  let st=new Date((/^\d{4}-\d\d-\d\d$/.test(T.start)?T.start:'x')+'T12:00:00');
+  if (isNaN(st)) st=seasonStart(S.season, seasonOf(d).h);
+  while (+st<Date.now()+7*864e5) st=new Date(st.getFullYear()+1, st.getMonth(), st.getDate(), 12);
+  S.start=st; S.temp=seasonTemp();
+  S.lineage=[...arr(T.ch).map(x=>s(x,20).trim()), s(T.by,20).trim()].filter(Boolean).slice(-8);
+  S.stolenFrom=s(T.by,20).trim()||'a stranger';
+  S.hype=0; S.seat=null; S.extras=new Set(); S.added={}; S.exc=[]; S.tab='itin'; S.pools={};
+  let xi=0;
+  S.plan=arr(T.p).slice(0,14).map(day=>({title:s(day.ti,40)||'Wander day', items:arr(day.i).slice(0,12).map(it=>{
+    const lab=s(it.k,40), k=/Lunch|Dinner/.test(lab)?'food':/Morning|Afternoon|Evening/.test(lab)?'act':'x';
+    return {k, t:/^\d\d:\d\d$/.test(it.t)?it.t:'12:00', txt:s(it.x,140), cost:N(it.c), tag:s(it.g,30), liked:false, ...(k==='x'?{lab, xid:'sx'+(xi++)}:{})};
+  })}));
+  if (!S.plan.length){ S.days=Math.min(14,Math.max(1,N(T.days)||5)); buildPlan(); } else S.days=S.plan.length;
+  S.exc=arr(T.ex).slice(0,20).map((e,i)=>{
+    const id='st'+i, day=Math.min(S.days-1,N(e.d)), time=s(e.tm,5);
+    const it=S.plan[day].items.find(x=>x.k==='x' && x.t===time && /booked/.test(x.lab||'') && !x.claimed);
+    if (it){ it.xid=id; it.claimed=1; }
+    return {id, title:s(e.t,120), emoji:s(e.e,4), day, time, guide:s(e.g,20)||null, priv:!!e.pv};
+  });
+  S.plan.forEach(d=>d.items.forEach(it=>delete it.claimed));
+  buildTravel(); const F=T.f||{}, H=T.h||{};
+  if (F.a) S.flight.air=s(F.a,30);
+  if (N(F.p)){ S.flight.price=N(F.p); S.flight.was=Math.round(N(F.p)*1.35); }
+  if (/^\d\d:\d\d$/.test(F.o)) S.flight.out=F.o;
+  if (/^[\dhm ]{2,9}$/.test(F.du||'')) S.flight.dur=F.du;
+  if (H.n) S.hotel.name=s(H.n,80);
+  if (N(H.pn)) S.hotel.nightly=N(H.pn);
+  document.documentElement.style.setProperty('--g1', d.c[0]); document.documentElement.style.setProperty('--g2', d.c[1]);
+  S.season!=='any' && renderSeasons();
+  show('plan'); renderBanner(); setHype(20);
+  $('#explore').style.display='none'; $('#itin').style.display='';
+  buildExplore(); renderAside(); renderTabs(); renderExc();
+  const it=$('#itin'); it.innerHTML=''; S.plan.forEach((_,i)=>it.appendChild(dayEl(i)));
+  startLive(); confetti(120); chord(); buzz(40);
+  toast(`🏴‍☠️ Stolen from ${S.stolenFrom}! It's yours now. Remix away.`);
+}
+
 function clearHash(){ if (location.hash) history.replaceState(null,'',location.pathname+location.search); }
 async function openSharedFromHash(){
-  const m=location.hash.match(/^#trip=([A-Za-z0-9_-]+)$/); if(!m) return false;
-  try{ const T=await unpackTrip(m[1]); if(!T||typeof T!=='object'||!T.d) throw 0; showConfirm(T,true); setTimeout(()=>confetti(80),300); return true; }
-  catch{ toast("That trip link looks broken. Plan a fresh one! ✨"); clearHash(); return false; }
+  const m=location.hash.match(/^#(trip|reply)=([A-Za-z0-9_-]+)$/); if(!m) return false;
+  try{
+    const T=await unpackTrip(m[2]); if(!T||typeof T!=='object') throw 0;
+    if (m[1]==='reply') showReply(T);
+    else { if(!T.d) throw 0; await showConfirm(T,true); if(!T.sur) setTimeout(()=>confetti(80),300); }
+    return true;
+  }catch{ toast("That link looks broken. Plan a fresh trip! ✨"); clearHash(); return false; }
 }
 addEventListener('hashchange', openSharedFromHash);
 
